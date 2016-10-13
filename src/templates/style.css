@@ -1,0 +1,161 @@
+body {
+	background: #eee;
+}
+footer {
+	padding: 8em 0 2em;
+}
+footer a {
+	color: #888;
+}
+footer a:hover {
+	color: #555;
+}
+
+
+.d-row {
+	display: block;
+}
+.d-type-map-inner, .d-type-array-inner {
+	padding-left: 1.8em;
+	display: block;
+	border-left: 1px dotted #ccc;
+}
+.d-type-string {
+	color: green;
+}
+.d-type-int {
+	color: darkred;
+}
+.d-type-float {
+	color: mediumvioletred;
+}
+.d-type-bool {
+	color: darkcyan;
+}
+.d-type-null {
+	color: #9F9C7F;
+}
+.d-type-any {
+	color: darkolivegreen;
+}
+.d-name {
+	font-weight: bold;
+}
+.d-sample {
+	display: none;
+}
+.d-show-samples .d-sample {
+	display: inline;
+}
+.d-show-samples .d-sample ~ .d-types {
+	display: none;
+}
+.d-optional {
+	font-style: italic;
+}
+.d-key-colon {
+	margin-right: 0.6em;
+}
+.d-block {
+	line-height: 1.2;
+	font-size: 1.1em;
+	background: #f5f5f5;
+	border: 1px dotted #aaa;
+	border-radius: 2px;
+	padding: 0.5em 0.6em;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.d-array-count {
+	background: #ddd;
+	border-radius: 2px;
+	line-height: 1;
+	padding: 0 0.3em;
+}
+
+
+.endpoint {
+	background: white;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 0.2em;
+}
+.endpoint:hover {
+	border-color: #aaa;
+}
+.endpoint-body {
+	border-top: 1px solid #ddd;
+}
+.endpoint-body .nav-tabs {
+	padding: 0 1em;
+	margin-top: 1em;
+}
+.endpoint-body .nav > li > a {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.endpoint-body .tab-pane {
+	padding: 1em;
+}
+.endpoint-body .tab-pane > h4:first-child {
+	margin-top: 0;
+}
+.endpoint-body > .description {
+	margin-bottom: 1em;
+	padding: 1em 1em 0 1em;
+}
+.endpoint-body .description-cell {
+	max-width: 0;
+	width: 40%;
+	color: #666;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.endpoint-body tr:hover .description-cell {
+	white-space: normal;
+}
+.endpoint-body .btn-sample-toggler {
+	float: right;
+}
+.endpoint .type {
+	padding: 0.4em 1em;
+	font-weight: bold;
+	display: inline-block;
+	width: 90px;
+	border-radius: 2px 0 0 0;
+	background: #eee;
+}
+.endpoint-header {
+	cursor: pointer;
+}
+.endpoint-header .type {
+	color: white;
+}
+.endpoint-header .type-post {
+	background: #06a77d;
+}
+.endpoint-header .type-get {
+	background: #006ba6;
+}
+.endpoint-header .type-put {
+	background: #f58a07;
+}
+.endpoint-header .type-patch {
+	background: #f58a07;
+}
+.endpoint-header .type-delete {
+	background: #a30000;
+}
+.endpoint-header .title {
+	float: right;
+	font-size: 1.2em;
+	line-height: 1.9;
+	margin: 0 1em;
+}
+.endpoint-header .url {
+	padding: 0.4em 0.5em;
+	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+.endpoint-header .url-var {
+	color: royalblue;
+}

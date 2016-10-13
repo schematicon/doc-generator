@@ -1,0 +1,85 @@
+{layout @layout.latte}
+{block content}
+
+	<h1>{$api[title]}</h1>
+
+	<p n:if="!empty($api[description])">
+		{$api[description]}
+	</p>
+
+	{foreach $api[sections] as $section}
+		<h3>{$section[title]}</h3>
+
+		<p n:if="!empty($section[description])">
+			{$section[description]}
+		</p>
+
+		{foreach $section[endpoints] as $url => $generalEndpoint}
+			{foreach [get, post, put, patch, delete] as $method}
+				{ifset $generalEndpoint[$method]}
+					{var $endpoint = $generalEndpoint[$method]}
+					{var $hasActive = null}
+					{var $eid = md5($url . $method)}
+					<div class="endpoint">
+						<div class="endpoint-header" data-toggle="collapse" data-target="#e-{$eid}" aria-expanded="false">
+							<span class="type type-{$method}">{$method|upper}</span>
+							<span class="url">{$url}</span>
+							<span class="title">{$endpoint[title]}</span>
+						</div>
+						<div class="endpoint-body collapse" id="e-{$eid}">
+							<p class="description" n:if="!empty($endpoint[description])">
+								{$endpoint[description]}
+							</p>
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" n:if="isset($endpoint[parameters]) || isset($endpoint[request][schema])" n:class="!$hasActive && ($hasActive = 1) ? active">
+									<a href="#{$eid}-request" aria-controls="home" role="tab" data-toggle="tab">Parameters & Request</a>
+								</li>
+								<li role="presentation" n:ifset="$endpoint[response_ok][schema]" n:class="!$hasActive && ($hasActive = 2) ? active">
+									<a href="#{$eid}-response_ok" aria-controls="home" role="tab" data-toggle="tab">Response <span class="label label-success">ok</span></a>
+								</li>
+								<li role="presentation" n:ifset="$endpoint[response_error][schema]" n:class="!$hasActive && ($hasActive = 3) ? active">
+									<a href="#{$eid}-response_error" aria-controls="home" role="tab" data-toggle="tab">Response <span class="label label-danger">error</span> </a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div role="tabpanel" n:class="$hasActive === 1 ? active, tab-pane" id="{$eid}-request" n:if="isset($endpoint[parameters]) || isset($endpoint[request][schema])">
+									{ifset $endpoint[parameters]}
+										<h4>Parameters</h4>
+										<table class="table table-condensed">
+											{foreach $endpoint[parameters] as $parameter => $parameterSchema}
+												<tr>
+													<td>{$parameter}</td>
+													<td>{include @schema.latte schema => $parameterSchema, inline => true}</td>
+												</tr>
+											{/foreach}
+										</table>
+									{/ifset}
+									{ifset $endpoint[request][schema]}
+										<h4>Request Body</h4>
+										{include @schema.latte schema => $endpoint[request][schema]}
+									{/ifset}
+								</div>
+								<div role="tabpanel" n:class="$hasActive === 2 ? active, tab-pane" id="{$eid}-response_ok" n:ifset="$endpoint[response_ok][schema]">
+									<p n:if="!empty($endpoint[response_ok][description])">
+										{$endpoint[response_ok][description]}
+									</p>
+									{include @schema.latte schema => $endpoint[response_ok][schema]}
+								</div>
+								<div role="tabpanel" n:class="$hasActive === 3 ? active, tab-pane" id="{$eid}-response_error" n:ifset="$endpoint[response_error][schema]">
+									{include @schema.latte schema => $endpoint[response_error][schema]}
+								</div>
+							</div>
+						</div>
+					</div>
+				{/ifset}
+			{/foreach}
+		{/foreach}
+	{/foreach}
+
+	<script>
+	$('.btn-sample-toggler').on('click', function () {
+		$(this).parent().toggleClass('d-show-samples');
+	})
+	</script>
+
+{/block}

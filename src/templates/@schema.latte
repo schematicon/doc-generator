@@ -1,0 +1,71 @@
+{define level}
+	{if isset($schema[reference])}
+		<span>reference {$schema[reference]}</span>
+	{elseif isset($schema[anyOf])}
+		<span>anyOf</span>
+	{elseif isset($schema[allOf])}
+		<span>allOf</span>
+	{elseif isset($schema[oneOf])}
+		<span>oneOf</span>
+	{else}
+		{ifset $schema[sample]}
+			{if is_string($schema[sample])}
+				<span class="d-type-string d-sample">"{$schema[sample]}"</span>
+			{elseif is_bool($schema[sample])}
+				<span class="d-type-bool d-sample">{$schema[sample] ? 'true' : 'false'}</span>
+			{elseif is_int($schema[sample])}
+				<span class="d-type-int d-sample">{$schema[sample]}</span>
+			{elseif is_float($schema[sample])}
+				<span class="d-type-float d-sample">{$schema[sample]}</span>
+			{/if}
+		{/ifset}
+		<span class="d-types">
+		{var $types = explode('|', $schema[type])}
+		{foreach $types as $type}
+			{if $type === 'int'}
+				<span class="d-type d-type-int">int</span>
+			{elseif $type === 'string'}
+				<span class="d-type d-type-string">string</span>
+			{elseif $type === 'float'}
+				<span class="d-type d-type-float">float</span>
+			{elseif $type === 'bool'}
+				<span class="d-type d-type-bool">bool</span>
+			{elseif $type === 'null'}
+				<span class="d-type d-type-null">null</span>
+			{elseif $type === 'any'}
+				<span class="d-type-any">any</span>
+			{elseif $type === 'array'}
+				<span class="d-type-array">
+					[
+					<span class="d-type-arary-inner">
+					<span class="d-type-map-inner" n:tag-if="$schema[item][type] === map">
+					{include #level schema => $schema[item]}
+					<span class="d-array-count">0&hellip;∞</span>
+					</span>
+					</span>
+					]
+				</span>
+			{elseif $type === 'map'}
+				<span class="d-type-map">
+					{
+					<span class="d-type-map-inner">
+					{foreach $schema[properties] as $keyName => $key}
+						<span class="d-row">
+						<span class="d-name">{$keyName}</span><span class="d-key-colon">:</span>
+							{include #level schema => $key}
+						</span>
+					{/foreach}
+					</span>
+				} </span>
+			{else}
+				else scalar type
+			{/if}{sep}<span class="d-type-sep">|</span>{/sep}
+		{/foreach}
+		</span>
+	{/if}
+{/define}
+
+<div n:class="isset($inline) && $inline ? d-inline : d-block">
+	<button class="btn-sample-toggler btn btn-default btn-sm">types/samples</button>
+	{include level schema => $schema}
+</div>

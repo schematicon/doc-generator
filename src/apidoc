@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * This file is part of the Schematicon library.
+ * @license    MIT
+ * @link       https://github.com/schematicon/doc-generator
+ */
+
+namespace Schematicon\DocGenerator;
+
+
+require_once __DIR__ . '/apidoc.php';
