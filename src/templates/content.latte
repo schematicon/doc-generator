@@ -23,7 +23,7 @@
 					<div class="endpoint">
 						<div class="endpoint-header" data-toggle="collapse" data-target="#e-{$eid}" aria-expanded="false">
 							<span class="type type-{$method}">{$method|upper}</span>
-							<span class="url">{$url}</span>
+							<span class="url">{$url|urlvars}</span>
 							<span class="title">{$endpoint[title]}</span>
 						</div>
 						<div class="endpoint-body collapse" id="e-{$eid}">
