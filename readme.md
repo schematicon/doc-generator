@@ -6,16 +6,11 @@ Schematicon API Documentation Builder
 
 ### Usage
 
-Use composer:
+Use composer & run builder:
 
 ```bash
-$ composer require schematicon/doc-generator
-```
-
-and run your code:
-
-```bash
-$ vendor/bin/apidoc build ./../path/to/schema/index.neon ./out-directory
+$ composer create-project schematicon/doc-generator ./doc-generator
+$ ./doc-generator/apidoc build ./path/to/schema/index.neon ./out-directory
 ```
 
 
