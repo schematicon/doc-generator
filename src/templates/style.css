@@ -15,6 +15,9 @@ footer a:hover {
 .d-row {
 	display: block;
 }
+.d-enum-keyword {
+	color: rebeccapurple;
+}
 .d-type-map-inner, .d-type-array-inner {
 	padding-left: 1.8em;
 	display: block;

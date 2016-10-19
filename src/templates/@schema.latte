@@ -9,6 +9,10 @@
 		<span>allOf</span>
 	{elseif isset($schema[oneOf])}
 		<span>oneOf</span>
+	{elseif isset($schema[enum])}
+		<span class="d-enum"><span class="d-enum-keyword">enum</span>[{foreach $schema[enum] as $enumValue}
+			{include value value => $enumValue}{sep}, {/sep}
+		{/foreach}]</span>
 	{else}
 		{ifset $schema[sample]}
 			<span class="d-sample">{include value value => $schema[sample]}</span>
