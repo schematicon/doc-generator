@@ -24,6 +24,7 @@
 				<span class="d-type d-type-int">int</span>
 			{elseif $type === 'string'}
 				<span class="d-type d-type-string">string</span>
+				{if isset($schema[regexp])}(<span class="d-regexp" attr="Regular Expression">{$schema[regexp]}</span>){/if}
 			{elseif $type === 'float'}
 				<span class="d-type d-type-float">float</span>
 			{elseif $type === 'bool'}

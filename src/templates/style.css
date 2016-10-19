@@ -26,6 +26,9 @@ footer a:hover {
 .d-type-string {
 	color: green;
 }
+.d-regexp {
+	color: #06a77d;
+}
 .d-type-int {
 	color: darkred;
 }
