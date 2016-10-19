@@ -10,4 +10,4 @@
 namespace Schematicon\DocGenerator;
 
 
-require_once __DIR__ . '/apidoc.php';
+require_once __DIR__ . '/src/apidoc.php';
