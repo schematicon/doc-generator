@@ -1,3 +1,5 @@
+{import @value.latte}
+
 {define level}
 	{if isset($schema[reference])}
 		<span>reference {$schema[reference]}</span>
@@ -9,15 +11,7 @@
 		<span>oneOf</span>
 	{else}
 		{ifset $schema[sample]}
-			{if is_string($schema[sample])}
-				<span class="d-type-string d-sample">"{$schema[sample]}"</span>
-			{elseif is_bool($schema[sample])}
-				<span class="d-type-bool d-sample">{$schema[sample] ? 'true' : 'false'}</span>
-			{elseif is_int($schema[sample])}
-				<span class="d-type-int d-sample">{$schema[sample]}</span>
-			{elseif is_float($schema[sample])}
-				<span class="d-type-float d-sample">{$schema[sample]}</span>
-			{/if}
+			<span class="d-sample">{include value value => $schema[sample]}</span>
 		{/ifset}
 		<span class="d-types">
 		{var $types = explode('|', $schema[type])}

@@ -1,0 +1,13 @@
+{define value}
+	{if is_string($value)}
+		<span class="d-type-string">"{$value}"</span>
+	{elseif is_bool($value)}
+		<span class="d-type-bool">{$value ? 'true' : 'false'}</span>
+	{elseif is_int($value)}
+		<span class="d-type-int">{$value}</span>
+	{elseif is_float($value)}
+		<span class="d-type-float">{$value}</span>
+	{elseif is_null($value)}
+		<span class="d-type-null">null</span>
+	{/if}
+{/define}

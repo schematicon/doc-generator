@@ -1,3 +1,5 @@
+{import @value.latte}
+
 <table class="table table-condensed">
 	{foreach $parameters as $parameter => $schema}
 		<tr>
@@ -27,15 +29,7 @@
 			</td>
 			<td>
 			{ifset $schema[sample]}
-				{if is_string($schema[sample])}
-					<span class="d-type-string">"{$schema[sample]}"</span>
-				{elseif is_bool($schema[sample])}
-					<span class="d-type-bool">{$schema[sample] ? 'true' : 'false'}</span>
-				{elseif is_int($schema[sample])}
-					<span class="d-type-int">{$schema[sample]}</span>
-				{elseif is_float($schema[sample])}
-					<span class="d-type-float">{$schema[sample]}</span>
-				{/if}
+				{include value value => $schema[sample]}
 			{/ifset}
 			</td>
 			<td class="description-cell">
