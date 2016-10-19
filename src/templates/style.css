@@ -72,15 +72,53 @@ footer a:hover {
 	padding: 0 0.3em;
 }
 
+.section {
+	margin-bottom: 1.8em;
+}
+.section > h3 {
+	margin-top: 0.2em;
+}
+.section > h3 a {
+	display: none;
+}
+.section > h3:hover a {
+	display: inline;
+	color: #666;
+}
+.section > h3:hover a:hover {
+	color: #444;
+}
+.section:target  {
+	background: lightgoldenrodyellow;
+	border-radius: 0.4em;
+	padding: 5px;
+	margin-left: -0.4em;
+	margin-right: -0.4em;
+}
 
 .endpoint {
 	background: white;
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	margin-bottom: 0.2em;
+	margin-right: 1em;
 }
 .endpoint:hover {
 	border-color: #aaa;
+}
+.endpoint-anchor {
+	position: absolute;
+	right: 1em;
+}
+.endpoint-anchor a {
+	color: #555;
+	font-size: 1.1em;
+	line-height: 31px;
+	height: 33px;
+	display: block;
+}
+.endpoint-anchor a:hover {
+	color: #333;
 }
 .endpoint-body {
 	border-top: 1px solid #ddd;
@@ -127,6 +165,9 @@ footer a:hover {
 }
 .endpoint-header {
 	cursor: pointer;
+}
+.endpoint:target .endpoint-header {
+	background: lightgoldenrodyellow;
 }
 .endpoint-header .type {
 	color: white;

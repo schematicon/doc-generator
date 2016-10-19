@@ -8,7 +8,12 @@
 	</p>
 
 	{foreach $api[sections] as $section}
-		<h3>{$section[title]}</h3>
+	{var $sectionAnchor = 'section-' . Nette\Utils\Strings::webalize($section[title])}
+	<div class="section" id="{$sectionAnchor}">
+		<h3>
+			{$section[title]}
+			<a href="#{$sectionAnchor}">#</a>
+		</h3>
 
 		<p n:if="!empty($section[description])">
 			{$section[description]}
@@ -20,7 +25,11 @@
 					{var $endpoint = $generalEndpoint[$method]}
 					{var $hasActive = null}
 					{var $eid = md5($url . $method)}
-					<div class="endpoint">
+					{var $anchor = 'endpoint-' . Nette\Utils\Strings::webalize($method . '-' . $url)}
+					<div class="endpoint" id="{$anchor}">
+						<div class="endpoint-anchor">
+							<a href="#{$anchor}">#</a>
+						</div>
 						<div class="endpoint-header" data-toggle="collapse" data-target="#e-{$eid}" aria-expanded="false">
 							<span class="type type-{$method}">{$method|upper}</span>
 							<span class="url">{$url|urlvars}</span>
@@ -67,6 +76,7 @@
 				{/ifset}
 			{/foreach}
 		{/foreach}
+	</div>
 	{/foreach}
 
 	<script>
