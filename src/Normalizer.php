@@ -9,6 +9,7 @@
 namespace Schematicon\DocGenerator;
 
 use Schematicon\Validator\Normalizer as SchematiconNormalizer;
+use Schematicon\Validator\SchemaValidator;
 
 
 class Normalizer
@@ -17,6 +18,7 @@ class Normalizer
 	{
 		$data = $this->normalizeEndpoints($data);
 		$data = $this->normalizeWrappers($data);
+		$data = $this->validateAndNormalizeResourceSchemas($data);
 		return $data;
 	}
 
@@ -43,6 +45,7 @@ class Normalizer
 
 	private function normalizeWrappers(array $data): array
 	{
+		$schemaValidator = new SchemaValidator();
 		$normalizer = new SchematiconNormalizer();
 		foreach ($data['sections'] as $i => $section) {
 			foreach ($section['endpoints'] as $url => $generalEndpoint) {
@@ -59,6 +62,10 @@ class Normalizer
 								$value = $endpoint['response_ok']['schema'] ?? ['type' => 'null'];
 							}
 						});
+						$validationResult = $schemaValidator->validate($schema);
+						if (!$validationResult->isValid()) {
+							throw new \RuntimeException("Schema for $url $httpMethod response_ok is not valid. " . implode("\n", $validationResult->getErrors()));
+						}
 						$data['sections'][$i]['endpoints'][$url][$httpMethod]['response_ok']['schema'] = $normalizer->normalize($schema);
 					}
 					if (isset($data['response_error']['wrapper'])) {
@@ -68,6 +75,10 @@ class Normalizer
 								$value = $endpoint['response_error']['schema'] ?? ['type' => 'null'];
 							}
 						});
+						$validationResult = $schemaValidator->validate($schema);
+						if (!$validationResult->isValid()) {
+							throw new \RuntimeException("Schema for $url $httpMethod response_error is not valid. " . implode("\n", $validationResult->getErrors()));
+						}
 						$data['sections'][$i]['endpoints'][$url][$httpMethod]['response_error']['schema'] = $normalizer->normalize($schema);
 					}
 
@@ -78,6 +89,22 @@ class Normalizer
 					$data['sections'][$i]['endpoints'][$url][$httpMethod]['parameters'] = $parameters ?: null;
 				}
 			}
+		}
+
+		return $data;
+	}
+
+
+	private function validateAndNormalizeResourceSchemas($data)
+	{
+		$schemaValidator = new SchemaValidator();
+		$normalizer = new SchematiconNormalizer();
+
+		foreach ($data['resources'] ?? [] as $resourceName => $schema) {
+			if (!$schemaValidator->validate($schema)->isValid()) {
+				throw new \RuntimeException("Resource $resourceName is not valid schema");
+			}
+			$data['resources'][$resourceName] = $normalizer->normalize($schema);
 		}
 
 		return $data;
