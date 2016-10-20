@@ -20,6 +20,7 @@ footer a:hover {
 
 .d-row {
 	display: block;
+	position: relative;
 }
 .d-enum-keyword, .d-operator-keywords {
 	color: rebeccapurple;
@@ -55,6 +56,24 @@ footer a:hover {
 }
 .d-name {
 	font-weight: bold;
+}
+.d-description {
+	color: #666;
+	margin-left: 4em;
+	font-style: italic;
+	font-size: 0.9em;
+	overflow: hidden;
+	height: 17px;
+	position: absolute;
+}
+.d-row:hover > .d-description {
+	background: white;
+	height: auto;
+	margin-left: 3.8em;
+	margin-top: -0.1em;
+	padding: 0.1em 0.2em;
+	border-radius: 2px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 }
 .d-sample {
 	display: none;

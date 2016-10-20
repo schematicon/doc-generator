@@ -64,6 +64,9 @@
 			{/if}{sep}<span class="d-type-sep">|</span>{/sep}
 		{/foreach}
 		</span>
+		{ifset $schema[description]}
+			<span class="d-description">{$schema[description]}</span>
+		{/ifset}
 	{/if}
 {/define}
 
