@@ -2,7 +2,8 @@
 
 {define level}
 	{if isset($schema[reference])}
-		<span>reference {$schema[reference]}</span>
+		{* toto: check for recursion *}
+		{include level schema => $loadReference($schema[reference])}
 	{elseif isset($schema[anyOf])}
 		<span>anyOf</span>
 	{elseif isset($schema[allOf])}
@@ -38,7 +39,7 @@
 					[
 					<span class="d-type-arary-inner">
 					<span class="d-type-map-inner" n:tag-if="$schema[item][type] === map">
-					{include #level schema => $schema[item]}
+					{include level schema => $schema[item]}
 					<span class="d-array-count">0&hellip;∞</span>
 					</span>
 					</span>
@@ -51,7 +52,7 @@
 					{foreach $schema[properties] as $keyName => $key}
 						<span class="d-row">
 						<span class="d-name">{$keyName}</span><span class="d-key-colon">:</span>
-							{include #level schema => $key}
+							{include level schema => $key}
 						</span>
 					{/foreach}
 					</span>
