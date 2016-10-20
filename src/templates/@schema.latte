@@ -41,7 +41,7 @@
 				<span class="d-type-array">
 					[
 					<span class="d-type-arary-inner">
-					<span class="d-type-map-inner" n:tag-if="($schema[item][type] ?? 'map') === map">{* item may containt a reference *}
+					<span class="d-type-map-inner" n:tag-if="($schema[item][type] ?? 'map') === map">{* item may contain a reference *}
 					{include level schema => $schema[item]}
 					<span class="d-array-count">0&hellip;∞</span>
 					</span>
@@ -59,9 +59,8 @@
 						</span>
 					{/foreach}
 					</span>
-				} </span>
-			{else}
-				else scalar type
+					}
+				</span>
 			{/if}{sep}<span class="d-type-sep">|</span>{/sep}
 		{/foreach}
 		</span>
