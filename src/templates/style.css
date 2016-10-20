@@ -1,6 +1,12 @@
 body {
 	background: #eee;
 }
+header {
+	margin-bottom: 2em;
+}
+header h1 a {
+	color: black;
+}
 footer {
 	padding: 8em 0 2em;
 }
