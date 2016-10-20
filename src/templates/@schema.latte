@@ -38,7 +38,7 @@
 				<span class="d-type-array">
 					[
 					<span class="d-type-arary-inner">
-					<span class="d-type-map-inner" n:tag-if="$schema[item][type] === map">
+					<span class="d-type-map-inner" n:tag-if="($schema[item][type] ?? 'map') === map">{* item may containt a reference *}
 					{include level schema => $schema[item]}
 					<span class="d-array-count">0&hellip;∞</span>
 					</span>
