@@ -4,12 +4,15 @@
 	{if isset($schema[reference])}
 		{* toto: check for recursion *}
 		{include level schema => $loadReference($schema[reference])}
-	{elseif isset($schema[anyOf])}
-		<span>anyOf</span>
-	{elseif isset($schema[allOf])}
-		<span>allOf</span>
-	{elseif isset($schema[oneOf])}
-		<span>oneOf</span>
+	{elseif
+		(isset($schema[anyOf]) && $operator = anyOf) ||
+		(isset($schema[allOf]) && $operator = allOf) ||
+		(isset($schema[oneOf]) && $operator = oneOf)
+	}
+		<span class="d-operator-keywords">{$operator}</span>
+		{foreach $schema[$operator] as $subSchema}
+			<span class="d-operator-inner">&ndash; {include level schema => $subSchema}</span>
+		{/foreach}
 	{elseif isset($schema[enum])}
 		<span class="d-enum"><span class="d-enum-keyword">enum</span>[{foreach $schema[enum] as $enumValue}
 			{include value value => $enumValue}{sep}, {/sep}
