@@ -14,7 +14,7 @@
 			<span class="d-operator-inner">&ndash; {include level schema => $subSchema}</span>
 		{/foreach}
 	{elseif isset($schema[enum])}
-		<span class="d-enum"><span class="d-enum-keyword">enum</span>[{foreach $schema[enum] as $enumValue}
+		<span class="d-enum"><span class="d-enum-keyword">{if count($schema[enum]) === 1}const{else}enum{/if}</span>[{foreach $schema[enum] as $enumValue}
 			{include value value => $enumValue}{sep}, {/sep}
 		{/foreach}]</span>
 	{else}
