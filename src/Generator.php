@@ -10,16 +10,22 @@ namespace Schematicon\DocGenerator;
 
 use Latte\Engine;
 use Latte\Runtime\Html;
+use Texy\Texy;
 
 
 class Generator
 {
 	public function generate($apiSpecification)
 	{
+		$texy = new Texy();
+
 		$latte = new Engine();
 		$latte->setTempDirectory(__DIR__ . '/../temp');
 		$latte->addFilter('urlvars', function ($url) {
 			return new Html(preg_replace('#(\{[\w_]+\})#', '<span class="url-var">\1</span>', $url));
+		});
+		$latte->addFilter('texy', function ($content) use ($texy) {
+			return new Html($texy->process($content));
 		});
 		return $latte->renderToString(__DIR__ . '/templates/content.latte', [
 			'api' => $apiSpecification,

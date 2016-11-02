@@ -4,9 +4,9 @@
 	<header>
 		<h1><a href="index.html">{$api[title]}</a></h1>
 
-		<p n:if="!empty($api[description])">
-			{$api[description]}
-		</p>
+		<div n:if="!empty($api[description])">
+			{$api[description]|texy}
+		</div>
 	</header>
 
 	{foreach $api[sections] as $section}
@@ -17,9 +17,9 @@
 			<a href="#{$sectionAnchor}">#</a>
 		</h3>
 
-		<p n:if="!empty($section[description])">
-			{$section[description]}
-		</p>
+		<div n:if="!empty($section[description])">
+			{$section[description]|texy}
+		</div>
 
 		{foreach $section[endpoints] as $url => $generalEndpoint}
 			{foreach [get, post, put, patch, delete] as $method}
@@ -38,9 +38,9 @@
 							<span class="title">{$endpoint[title]}</span>
 						</div>
 						<div class="endpoint-body collapse" id="e-{$eid}">
-							<p class="description" n:if="!empty($endpoint[description])">
-								{$endpoint[description]}
-							</p>
+							<div class="description" n:if="!empty($endpoint[description])">
+								{$endpoint[description]|texy}
+							</div>
 							<ul class="nav nav-tabs" role="tablist">
 								<li role="presentation" n:if="isset($endpoint[parameters]) || isset($endpoint[request][schema])" n:class="!$hasActive && ($hasActive = 1) ? active">
 									<a href="#{$eid}-request" aria-controls="home" role="tab" data-toggle="tab">Parameters & Request</a>
@@ -63,13 +63,13 @@
 										{include @schema.latte schema => $endpoint[request][schema]}
 									{/ifset}
 								</div>
-								<div role="tabpanel" n:class="$hasActive === 2 ? active, tab-pane" id="{$eid}-response_ok" n:ifset="$endpoint[response_ok][schema]">
-									<p n:if="!empty($endpoint[response_ok][description])">
-										{$endpoint[response_ok][description]}
-									</p>
+								<div role="tabpanel" n:class="$hasActive === 2 ? active, tab-pane" id="{$eid}-response_ok" n:ifset="$endpoint[response_ok]">
+									<div n:if="!empty($endpoint[response_ok][description])">
+										{$endpoint[response_ok][description]|texy}
+									</div>
 									{include @schema.latte schema => $endpoint[response_ok][schema]}
 								</div>
-								<div role="tabpanel" n:class="$hasActive === 3 ? active, tab-pane" id="{$eid}-response_error" n:ifset="$endpoint[response_error][schema]">
+								<div role="tabpanel" n:class="$hasActive === 3 ? active, tab-pane" id="{$eid}-response_error" n:ifset="$endpoint[response_error]">
 									{include @schema.latte schema => $endpoint[response_error][schema]}
 								</div>
 							</div>

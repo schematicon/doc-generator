@@ -235,3 +235,10 @@ footer a:hover {
 .endpoint-header .url-var {
 	color: #006ba6;
 }
+
+
+code {
+	border: 1px solid #e8d7dc;
+	padding-top: 0;
+	padding-bottom: 0;
+}

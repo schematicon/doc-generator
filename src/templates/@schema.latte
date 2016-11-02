@@ -74,7 +74,7 @@
 		{/foreach}
 		</span>
 		{ifset $schema[description]}
-			<span class="d-description">{$schema[description]}</span>
+			<span class="d-description">{$schema[description]|texy}</span>
 		{/ifset}
 	{/if}
 {/define}
