@@ -26,11 +26,20 @@
 		{foreach $types as $type}
 			{if $type === 'int'}
 				<span class="d-type d-type-int">int</span>
+				{if isset($schema[minValue]) || isset($schema[maxValue])}
+					<span class="d-number-count">{$schema[minValue]??'-∞'}&hellip;{$schema[maxValue]??'∞'}</span>
+				{/if}
+			{elseif $type === 'float'}
+				<span class="d-type d-type-float">float</span>
+				{if isset($schema[minValue]) || isset($schema[maxValue])}
+					<span class="d-number-count">{$schema[minValue]??'-∞'}&hellip;{$schema[maxValue]??'∞'}</span>
+				{/if}
 			{elseif $type === 'string'}
 				<span class="d-type d-type-string">string</span>
 				{if isset($schema[regexp])}(<span class="d-regexp" attr="Regular Expression">{$schema[regexp]}</span>){/if}
-			{elseif $type === 'float'}
-				<span class="d-type d-type-float">float</span>
+				{if isset($schema[minLength]) || isset($schema[maxLength])}
+					<span class="d-number-count">{$schema[minLength]??'0'}&hellip;{$schema[maxLength]??'∞'} chars</span>
+				{/if}
 			{elseif $type === 'bool'}
 				<span class="d-type d-type-bool">bool</span>
 			{elseif $type === 'null'}
