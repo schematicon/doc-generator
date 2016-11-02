@@ -70,6 +70,9 @@
 									{include @schema.latte schema => $endpoint[response_ok][schema]}
 								</div>
 								<div role="tabpanel" n:class="$hasActive === 3 ? active, tab-pane" id="{$eid}-response_error" n:ifset="$endpoint[response_error]">
+									<div n:if="!empty($endpoint[response_error][description])">
+										{$endpoint[response_error][description]|texy}
+									</div>
 									{include @schema.latte schema => $endpoint[response_error][schema]}
 								</div>
 							</div>
