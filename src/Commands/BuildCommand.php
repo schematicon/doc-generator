@@ -8,9 +8,9 @@
 
 namespace Schematicon\DocGenerator\Commands;
 
+use Schematicon\ApiValidator\Loader;
+use Schematicon\ApiValidator\Normalizer;
 use Schematicon\DocGenerator\Generator;
-use Schematicon\DocGenerator\Loader;
-use Schematicon\DocGenerator\Normalizer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
