@@ -66,6 +66,9 @@ footer a:hover {
 	height: 17px;
 	position: absolute;
 }
+.d-description p:last-child {
+	margin-bottom: 0;
+}
 .d-row:hover > .d-description {
 	background: white;
 	height: auto;
