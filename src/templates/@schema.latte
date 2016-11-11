@@ -14,40 +14,40 @@
 			<span class="d-operator-inner">&ndash; {include level schema => $subSchema}</span>
 		{/foreach}
 	{elseif isset($schema[enum])}
-		<span class="d-enum"><span class="d-enum-keyword">{if count($schema[enum]) === 1}const{else}enum{/if}</span>[{foreach $schema[enum] as $enumValue}
-			{include value value => $enumValue}{sep}, {/sep}
-		{/foreach}]</span>
+		<span class="d-enum"><span class="d-enum-keyword">{if count($schema[enum]) === 1}const{else}enum{/if}</span>[{foreach $schema[enum] as $enumValue}{*
+			*}{include value value => $enumValue}{sep}, {/sep}{*
+		*}{/foreach}]</span>
 	{else}
 		{ifset $schema[sample]}
 			<span class="d-sample">{include value value => $schema[sample]}</span>
 		{/ifset}
 		<span class="d-types">
 		{var $types = explode('|', $schema[type])}
-		{foreach $types as $type}
-			{if $type === 'int'}
-				<span class="d-type d-type-int">int</span>
-				{if isset($schema[minValue]) || isset($schema[maxValue])}
+		{foreach $types as $type}{*
+			*}{if $type === 'int'}{*
+				*}<span class="d-type d-type-int">int</span>{*
+				*}{if isset($schema[minValue]) || isset($schema[maxValue])}
 					<span class="d-number-count">{$schema[minValue]??'-∞'}&hellip;{$schema[maxValue]??'∞'}</span>
-				{/if}
-			{elseif $type === 'float'}
-				<span class="d-type d-type-float">float</span>
-				{if isset($schema[minValue]) || isset($schema[maxValue])}
+				{/if}{*
+			*}{elseif $type === 'float'}{*
+				*}<span class="d-type d-type-float">float</span>{*
+				*}{if isset($schema[minValue]) || isset($schema[maxValue])}
 					<span class="d-number-count">{$schema[minValue]??'-∞'}&hellip;{$schema[maxValue]??'∞'}</span>
-				{/if}
-			{elseif $type === 'string'}
-				<span class="d-type d-type-string">string</span>
-				{if isset($schema[regexp])}(<span class="d-regexp" attr="Regular Expression">{$schema[regexp]}</span>){/if}
-				{if isset($schema[minLength]) || isset($schema[maxLength])}
+				{/if}{*
+			*}{elseif $type === 'string'}{*
+				*}<span class="d-type d-type-string">string</span>{*
+				*}{if isset($schema[regexp])}(<span class="d-regexp" attr="Regular Expression">{$schema[regexp]}</span>){/if}{*
+				*}{if isset($schema[minLength]) || isset($schema[maxLength])}
 					<span class="d-number-count">{$schema[minLength]??'0'}&hellip;{$schema[maxLength]??'∞'} chars</span>
-				{/if}
-			{elseif $type === 'bool'}
-				<span class="d-type d-type-bool">bool</span>
-			{elseif $type === 'null'}
-				<span class="d-type d-type-null">null</span>
-			{elseif $type === 'any'}
-				<span class="d-type-any">any</span>
-			{elseif $type === 'array'}
-				<span class="d-type-array">
+				{/if}{*
+			*}{elseif $type === 'bool'}{*
+				*}<span class="d-type d-type-bool">bool</span>{*
+			*}{elseif $type === 'null'}{*
+				*}<span class="d-type d-type-null">null</span>{*
+			*}{elseif $type === 'any'}{*
+				*}<span class="d-type-any">any</span>{*
+			*}{elseif $type === 'array'}{*
+				*}<span class="d-type-array">
 					[
 					<span class="d-type-arary-inner">
 					<span class="d-type-map-inner" n:tag-if="($schema[item][type] ?? 'map') === map">{* item may contain a reference *}
@@ -56,15 +56,15 @@
 					</span>
 					</span>
 					]
-				</span>
-			{elseif $type === 'map'}
-				<span class="d-type-map">
+				</span>{*
+			*}{elseif $type === 'map'}{*
+				*}<span class="d-type-map">
 					{
 					<span class="d-type-map-inner">
 					{ifset $schema[properties]}
 					{foreach $schema[properties] as $keyName => $key}
 						<span class="d-row">
-							<span class="d-name">{$keyName}</span><span class="d-key-colon">:</span>
+							<span class="d-name">{$keyName}</span>:
 							{include level schema => $key}
 						</span>
 					{/foreach}
@@ -72,16 +72,16 @@
 					{ifset $schema[regexpProperties]}
 					{foreach $schema[regexpProperties] as $keyName => $key}
 						<span class="d-row">
-							<span class="d-name d-regexp" title="Any property matching this regular expression">{$keyName}</span><span class="d-key-colon">:</span>
+							<span class="d-name d-regexp" title="Any property matching this regular expression">{$keyName}</span>:
 							{include level schema => $key}
 						</span>
 					{/foreach}
 					{/ifset}
 					</span>
 					}
-				</span>
-			{/if}{sep}<span class="d-type-sep">|</span>{/sep}
-		{/foreach}
+				</span>{*
+			*}{/if}{sep}<span class="d-type-sep">|</span>{/sep}{*
+		*}{/foreach}
 		</span>
 		{ifset $schema[description]}
 			<span class="d-description">{$schema[description]|texy}</span>
