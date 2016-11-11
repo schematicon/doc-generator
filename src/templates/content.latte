@@ -2,7 +2,7 @@
 {block content}
 
 	<header>
-		<h1><a href="index.html">{$api[title]}</a></h1>
+		<h1><a href="./">{$api[title]}</a></h1>
 
 		<div n:if="!empty($api[description])">
 			{$api[description]|texy}
@@ -11,7 +11,7 @@
 
 	{foreach $api[sections] as $section}
 	{var $sectionAnchor = 'section-' . Nette\Utils\Strings::webalize($section[title])}
-	<div class="section" id="{$sectionAnchor}">
+	<section class="section" id="{$sectionAnchor}">
 		<h3>
 			{$section[title]}
 			<a href="#{$sectionAnchor}">#</a>
@@ -88,7 +88,7 @@
 				{/ifset}
 			{/foreach}
 		{/foreach}
-	</div>
+	</section>
 	{/foreach}
 
 	<script>
