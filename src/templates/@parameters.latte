@@ -5,20 +5,26 @@
 		<tr>
 			<td>{$parameter}</td>
 			<td>
-			{var $types = explode('|', $schema[type])}
-			{foreach $types as $type}
-				{if $type === 'int'}
-					<span class="d-type d-type-int">int</span>
-				{elseif $type === 'string'}
-					<span class="d-type d-type-string">string</span>
-				{elseif $type === 'float'}
-					<span class="d-type d-type-float">float</span>
-				{elseif $type === 'bool'}
-					<span class="d-type d-type-bool">bool</span>
+				{if isset($schema[enum])}
+					<span class="d-enum"><span class="d-enum-keyword">{if count($schema[enum]) === 1}const{else}enum{/if}</span>[{foreach $schema[enum] as $enumValue}
+						{include value value => $enumValue}{sep}, {/sep}
+					{/foreach}]</span>
 				{else}
-					else scalar type
-				{/if}{sep}<span class="d-type-sep">|</span>{/sep}
-			{/foreach}
+					{var $types = explode('|', $schema[type])}
+					{foreach $types as $type}
+						{if $type === 'int'}
+							<span class="d-type d-type-int">int</span>
+						{elseif $type === 'string'}
+							<span class="d-type d-type-string">string</span>
+						{elseif $type === 'float'}
+							<span class="d-type d-type-float">float</span>
+						{elseif $type === 'bool'}
+							<span class="d-type d-type-bool">bool</span>
+						{else}
+							else scalar type
+						{/if}{sep}<span class="d-type-sep">|</span>{/sep}
+					{/foreach}
+				{/if}
 			</td>
 			<td>
 			{ifset $schema[optional]}
