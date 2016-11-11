@@ -61,12 +61,22 @@
 				<span class="d-type-map">
 					{
 					<span class="d-type-map-inner">
+					{ifset $schema[properties]}
 					{foreach $schema[properties] as $keyName => $key}
 						<span class="d-row">
-						<span class="d-name">{$keyName}</span><span class="d-key-colon">:</span>
+							<span class="d-name">{$keyName}</span><span class="d-key-colon">:</span>
 							{include level schema => $key}
 						</span>
 					{/foreach}
+					{/ifset}
+					{ifset $schema[regexpProperties]}
+					{foreach $schema[regexpProperties] as $keyName => $key}
+						<span class="d-row">
+							<span class="d-name d-regexp" title="Any property matching this regular expression">{$keyName}</span><span class="d-key-colon">:</span>
+							{include level schema => $key}
+						</span>
+					{/foreach}
+					{/ifset}
 					</span>
 					}
 				</span>
