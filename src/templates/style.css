@@ -59,9 +59,9 @@ footer a:hover {
 }
 .d-description {
 	color: #666;
-	margin-left: 4em;
+	margin-left: 1em;
 	font-style: italic;
-	font-size: 0.9em;
+	font-size: 0.95em;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	overflow: hidden;
 	height: 17px;
@@ -73,11 +73,10 @@ footer a:hover {
 .d-row:hover > .d-description {
 	background: white;
 	height: auto;
-	margin-left: 3.8em;
+	margin-left: 0.8em;
 	margin-top: -0.1em;
 	padding: 0.1em 0.2em;
-	border-radius: 2px;
-	box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+	outline: 1px dashed #bbb;
 }
 .d-sample {
 	display: none;
@@ -97,11 +96,6 @@ footer a:hover {
 .d-block {
 	line-height: 1.25;
 	font-family: 'Fira Mono', monospace;
-	background: #f5f5f5;
-	border: 1px dotted #aaa;
-	border-radius: 2px;
-	padding: 0.5em 0.6em;
-	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
 }
 .d-array-count, .d-number-count, .d-length {
 	background: #ddd;
