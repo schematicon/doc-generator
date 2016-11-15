@@ -1,9 +1,20 @@
 {import @value.latte}
 
-<table class="table table-condensed">
+<table class="table table-condensed ">
+	<thead>
+	<tr>
+		<th>name</th>
+		<th>type</th>
+		<th>example</th>
+		<th>description</th>
+	</tr>
+	</thead>
+	<tbody>
 	{foreach $parameters as $parameter => $schema}
 		<tr>
-			<td>{$parameter}</td>
+			<td>
+				<span class="d-inline"><span class="d-name">{$parameter}</span></span>
+			</td>
 			<td>
 				<div class="d-inline">
 				{if isset($schema[enum])}{*
@@ -32,27 +43,26 @@
 						*}{/if}{sep}<span class="d-type-sep">|</span>{/sep}{*
 					*}{/foreach}{*
 				*}{/if}
+				{ifset $schema[optional]}
+					{if $schema[optional]}
+						<span class="d-optional">optional</span>
+					{/if}
+				{/ifset}
 				</div>
-			</td>
-			<td>
-			{ifset $schema[optional]}
-				{if $schema[optional]}
-					<span class="d-optional">optional</span>
-				{/if}
-			{/ifset}
 			</td>
 			<td>
 			{ifset $schema[sample]}
 				{include value value => $schema[sample]}
 			{/ifset}
 			</td>
-			<td class="description-cell">
+			<td class="parameter-description">
 			{ifset $schema[description]}
 				{$schema[description]|texy}
 			{/ifset}
 			</td>
 		</tr>
 	{/foreach}
+	</tbody>
 </table>
 
 

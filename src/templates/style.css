@@ -182,16 +182,13 @@ footer a:hover {
 	margin-bottom: 1em;
 	padding: 1em 1em 0 1em;
 }
-.endpoint-body .description-cell {
-	max-width: 0;
-	width: 40%;
+.endpoint-body .parameter-description {
 	color: #666;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
+	max-width: 50%;
+	width: 100%;
 }
-.endpoint-body tr:hover .description-cell {
-	white-space: normal;
+.endpoint-body .parameter-description p:last-child {
+	margin-bottom: 0;
 }
 .endpoint-body .btn-sample-toggler {
 	float: right;
@@ -253,4 +250,9 @@ code {
 
 pre > code {
 	border: none;
+}
+
+.table {
+	margin-bottom: 3em;
+	border-bottom: 2px solid #ddd;
 }
