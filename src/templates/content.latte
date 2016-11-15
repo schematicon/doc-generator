@@ -71,22 +71,28 @@
 									<div n:if="!empty($endpoint[request][description])">
 										{$endpoint[request][description]|texy}
 									</div>
-									<h4>Body</h4>
-									{ifset $endpoint[request][schema]}
+									{if !empty($endpoint[request][schema])}
+										<h4>Body</h4>
 										{include @schema.latte schema => $endpoint[request][schema]}
-									{/ifset}
+									{/if}
 								</div>
 								<div role="tabpanel" n:class="$hasActive === 2 ? active, tab-pane" id="{$eid}-response_ok" n:ifset="$endpoint[response_ok]">
 									<div n:if="!empty($endpoint[response_ok][description])">
 										{$endpoint[response_ok][description]|texy}
 									</div>
-									{include @schema.latte schema => $endpoint[response_ok][schema]}
+									{if !empty($endpoint[response_ok][schema])}
+										<h4>Body</h4>
+										{include @schema.latte schema => $endpoint[response_ok][schema]}
+									{/if}
 								</div>
 								<div role="tabpanel" n:class="$hasActive === 3 ? active, tab-pane" id="{$eid}-response_error" n:ifset="$endpoint[response_error]">
 									<div n:if="!empty($endpoint[response_error][description])">
 										{$endpoint[response_error][description]|texy}
 									</div>
-									{include @schema.latte schema => $endpoint[response_error][schema]}
+									{if !empty($endpoint[response_error][schema])}
+										<h4>Body</h4>
+										{include @schema.latte schema => $endpoint[response_error][schema]}
+									{/if}
 								</div>
 							</div>
 						</div>
