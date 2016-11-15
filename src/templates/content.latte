@@ -51,9 +51,13 @@
 							<div class="description" n:if="!empty($endpoint[description])">
 								{$endpoint[description]|texy}
 							</div>
+							{ifset $endpoint[parameters]}
+								<h4>Parameters</h4>
+								{include @parameters.latte parameters => $endpoint[parameters]}
+							{/ifset}
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" n:if="isset($endpoint[parameters]) || isset($endpoint[request][schema])" n:class="!$hasActive && ($hasActive = 1) ? active">
-									<a href="#{$eid}-request" aria-controls="home" role="tab" data-toggle="tab">Parameters & Request</a>
+								<li role="presentation" n:ifset="$endpoint[request][schema]" n:class="!$hasActive && ($hasActive = 1) ? active">
+									<a href="#{$eid}-request" aria-controls="home" role="tab" data-toggle="tab">Request</a>
 								</li>
 								<li role="presentation" n:ifset="$endpoint[response_ok][schema]" n:class="!$hasActive && ($hasActive = 2) ? active">
 									<a href="#{$eid}-response_ok" aria-controls="home" role="tab" data-toggle="tab">Response <span class="label label-success">ok</span></a>
@@ -63,21 +67,13 @@
 								</li>
 							</ul>
 							<div class="tab-content">
-								<div role="tabpanel" n:class="$hasActive === 1 ? active, tab-pane" id="{$eid}-request" n:if="isset($endpoint[parameters]) || isset($endpoint[request])">
-
-									{ifset $endpoint[parameters]}
-										<h4>Parameters</h4>
-										{include @parameters.latte parameters => $endpoint[parameters]}
-									{/ifset}
-
-									{ifset $endpoint[request]}
-										<h4>Request Body</h4>
-										<div n:if="!empty($endpoint[request][description])">
-											{$endpoint[request][description]|texy}
-										</div>
-										{ifset $endpoint[request][schema]}
-											{include @schema.latte schema => $endpoint[request][schema]}
-										{/ifset}
+								<div role="tabpanel" n:class="$hasActive === 1 ? active, tab-pane" id="{$eid}-request" n:ifset="$endpoint[request]">
+									<div n:if="!empty($endpoint[request][description])">
+										{$endpoint[request][description]|texy}
+									</div>
+									<h4>Body</h4>
+									{ifset $endpoint[request][schema]}
+										{include @schema.latte schema => $endpoint[request][schema]}
 									{/ifset}
 								</div>
 								<div role="tabpanel" n:class="$hasActive === 2 ? active, tab-pane" id="{$eid}-response_ok" n:ifset="$endpoint[response_ok]">
