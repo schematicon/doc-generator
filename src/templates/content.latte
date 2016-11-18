@@ -3,21 +3,31 @@
 
 	<h1><a href="./">{$api[title]}</a></h1>
 
-	<section class="panel" n:if="!empty($api[description]) || !empty($api[prefix])">
-		<div n:if="!empty($api[description])">
-			{$api[description]|texy}
-			<hr>
-		</div>
-
-		<h4>URL prefix</h4>
-		<p><span class="url">{$api[prefix][url]|urlvars}</span></p>
-
-		{if !empty($api[prefix][parameters])}
+	<section n:ifset="$api[description]">
+		{$api[description]|texy}
 		<br>
-		<h4>Parameters</h4>
-		{include @parameters.latte parameters => $api[prefix][parameters]}
-		{/if}
 	</section>
+
+	{ifset $api[prefix]}
+	<div class="endpoint">
+		<div class="endpoint-header" data-toggle="collapse" data-target="#e-urlprefix" aria-expanded="false">
+			<span class="title">URL Prefix &amp; Parameters</span>
+		</div>
+		<div class="endpoint-body collapse" id="e-urlprefix">
+			<div class="description">
+			<h4>URL prefix</h4>
+			<p><code>{$api[prefix][url]|urlvars}</code></p>
+
+			{if !empty($api[prefix][parameters])}
+			<br>
+			<h4>Parameters</h4>
+			{include @parameters.latte parameters => $api[prefix][parameters]}
+			{/if}
+			</div>
+		</div>
+	</div>
+	<br>
+	{/ifset}
 
 	{foreach $api[sections] as $section}
 	{var $sectionAnchor = 'section-' . Nette\Utils\Strings::webalize($section[title])}
@@ -45,12 +55,12 @@
 						<div class="endpoint-header" data-toggle="collapse" data-target="#e-{$eid}" aria-expanded="false">
 							<span class="type type-{$method}">{$method|upper}</span>
 							<span class="url">{$url|urlvars}</span>
-							<span class="tags">
+							<span class="tags pull-right">
 							{foreach $endpoint[tags] ?? $generalEndpoint[tags] ?? [] as $tag}
 								<span class="{$api[tags][classes][$tag] ?? $api[tags][defaultClass] ?? ''}">{$tag}</span>
 							{/foreach}
 							</span>
-							<span class="title">{$endpoint[title]}</span>
+							<span class="title pull-right">{$endpoint[title]}</span>
 						</div>
 						<div class="endpoint-body collapse" id="e-{$eid}">
 							<div class="description" n:if="!empty($endpoint[description])">
