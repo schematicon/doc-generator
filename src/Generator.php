@@ -18,6 +18,7 @@ class Generator
 	public function generate($apiSpecification)
 	{
 		$texy = new Texy();
+		$texy->headingModule->top = 4;
 
 		$latte = new Engine();
 		$latte->setTempDirectory(__DIR__ . '/../temp');
