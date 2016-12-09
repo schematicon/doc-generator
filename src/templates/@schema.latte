@@ -18,9 +18,9 @@
 			*}{include value value => $enumValue}{sep}, {/sep}{*
 		*}{/foreach}]</span>
 	{else}
-		{ifset $schema[sample]}
+		{if isset($schema[sample]) || array_key_exists(sample, $schema)}
 			<span class="d-sample">{include value value => $schema[sample]}</span>
-		{/ifset}
+		{/if}
 		<span class="d-types">
 		{var $types = explode('|', $schema[type])}
 		{foreach $types as $type}{*

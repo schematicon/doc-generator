@@ -51,9 +51,9 @@
 				</div>
 			</td>
 			<td>
-			{ifset $schema[sample]}
+			{if isset($schema[sample]) || array_key_exists(sample, $schema)}
 				{include value value => $schema[sample]}
-			{/ifset}
+			{/if}
 			</td>
 			<td class="parameter-description">
 			{ifset $schema[description]}
