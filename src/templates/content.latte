@@ -71,13 +71,13 @@
 								{include @parameters.latte parameters => $endpoint[parameters]}
 							</div>
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" n:ifset="$endpoint[request][schema]" n:class="!$hasActive && ($hasActive = 1) ? active">
+								<li role="presentation" n:ifset="$endpoint[request]" n:class="!$hasActive && ($hasActive = 1) ? active">
 									<a href="#{$eid}-request" aria-controls="home" role="tab" data-toggle="tab">Request</a>
 								</li>
-								<li role="presentation" n:ifset="$endpoint[response_ok][schema]" n:class="!$hasActive && ($hasActive = 2) ? active">
+								<li role="presentation" n:ifset="$endpoint[response_ok]" n:class="!$hasActive && ($hasActive = 2) ? active">
 									<a href="#{$eid}-response_ok" aria-controls="home" role="tab" data-toggle="tab">Response SUCCESS</a>
 								</li>
-								<li role="presentation" n:ifset="$endpoint[response_error][schema]" n:class="!$hasActive && ($hasActive = 3) ? active">
+								<li role="presentation" n:ifset="$endpoint[response_error]" n:class="!$hasActive && ($hasActive = 3) ? active">
 									<a href="#{$eid}-response_error" aria-controls="home" role="tab" data-toggle="tab">Response ERROR</a>
 								</li>
 							</ul>
