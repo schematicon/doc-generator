@@ -15,7 +15,7 @@ use Texy\Texy;
 
 class Generator
 {
-	public function generate($apiSpecification)
+	public function generate(array $apiSpecification, array $configuration)
 	{
 		$texy = new Texy();
 		$texy->headingModule->top = 4;
@@ -28,6 +28,7 @@ class Generator
 		$latte->addFilter('texy', function ($content) use ($texy) {
 			return new Html($texy->process($content));
 		});
+
 		return $latte->renderToString(__DIR__ . '/templates/content.latte', [
 			'api' => $apiSpecification,
 			'loadReference' => function ($name) use ($apiSpecification) {
@@ -36,6 +37,9 @@ class Generator
 				}
 				return $apiSpecification['resources'][$name];
 			},
+			'includeTemplates' => $configuration['templates'] ?? [],
+			'tags' => $configuration['tags'] ?? [],
+			'vars' => $configuration['vars'] ?? [],
 		]);
 	}
 }

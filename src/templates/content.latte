@@ -57,7 +57,7 @@
 							<span class="url">{$url|urlvars}</span>
 							<span class="tags pull-right">
 							{foreach $endpoint[tags] ?? $generalEndpoint[tags] ?? [] as $tag}
-								<span class="{$api[tags][classes][$tag] ?? $api[tags][defaultClass] ?? ''}">{$tag}</span>
+								<span class="{$tags[classes][$tag] ?? $tags[defaultClass] ?? ''}">{$tag}</span>
 							{/foreach}
 							</span>
 							<span class="title pull-right">{$endpoint[title]}</span>
