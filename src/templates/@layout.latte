@@ -1,26 +1,18 @@
+{foreach $includeTemplates as $includeTemplate}
+	{import $includeTemplate}
+{/foreach}
+{import @blocks.latte}
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="./style.css?{=time()}" type="text/css">
-	<title>{$api[title]}</title>
+	{include head-js}
+	{include head-css}
+	{include head-title}
+	{include head}
 </head>
 <body>
-<div class="container">
-	<div class="row">
-		<div class="col-sm-12">
-			{block content}{/block}
-		</div>
-	</div>
-	<footer class="row">
-		<div class="col-sm-12">
-			<a href="https://github.com/schematicon">Schematicon Doc Generator 1.0</a>
-		</div>
-	</footer>
-</div>
+	{include layout}
 </body>
 </html>
