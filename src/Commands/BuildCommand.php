@@ -8,6 +8,7 @@
 
 namespace Schematicon\DocGenerator\Commands;
 
+use Nette\Neon\Entity;
 use Nette\Neon\Neon;
 use Schematicon\ApiValidator\Loader;
 use Schematicon\ApiValidator\Normalizer;
@@ -48,7 +49,7 @@ class BuildCommand extends Command
 			if (!file_exists($configFile)) {
 				throw new \RuntimeException("Configuration file '$configFile' does not exist.");
 			}
-			$config = Neon::decode(file_get_contents($configFile));
+			$config = $this->loadConfig($configFile);
 			$config['templates'] = array_map(function ($templateFile) use ($configFile) {
 				return realpath(dirname($configFile) . '/' . $templateFile);
 			}, $config['templates']);
@@ -60,5 +61,20 @@ class BuildCommand extends Command
 
 		file_put_contents($outDir . '/index.html', $indexHtml);
 		copy(__DIR__ . '/../templates/style.css', $outDir . '/style.css');
+	}
+
+
+	protected function loadConfig(string $file)
+	{
+		$content = file_get_contents($file);
+		$decoded = Neon::decode($content);
+		array_walk_recursive($decoded, function (& $value) use ($file) {
+			if ($value instanceof Entity) {
+				if ($value->value === '@include') {
+					$value = $this->loadConfig(dirname($file) . '/'. $value->attributes[0]);
+				}
+			}
+		});
+		return $decoded;
 	}
 }
