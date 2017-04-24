@@ -40,12 +40,8 @@
 				*}{if isset($schema[minLength]) || isset($schema[maxLength])}
 					<span class="d-number-count">{$schema[minLength]??'0'}&hellip;{$schema[maxLength]??'∞'} chars</span>{*
 				*}{/if}{*
-			*}{elseif $type === 'bool'}{*
-				*}<span class="d-type d-type-bool">bool</span>{*
-			*}{elseif $type === 'null'}{*
-				*}<span class="d-type d-type-null">null</span>{*
-			*}{elseif $type === 'any'}{*
-				*}<span class="d-type-any">any</span>{*
+			*}{elseif in_array($type, [bool, 'null', any], true)}{*
+				*}<span class="d-type d-type-{$type}">{$type}</span>{*
 			*}{elseif $type === 'array'}{*
 				*}<span class="d-type-array">{*
 					*}[
