@@ -48,6 +48,9 @@ footer a:hover {
 .d-type-bool {
 	color: darkcyan;
 }
+.d-type-datetime, .d-type-date {
+	color: indigo;
+}
 .d-type-null {
 	color: #9F9C7F;
 }
