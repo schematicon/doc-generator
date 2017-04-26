@@ -68,7 +68,7 @@
 							</div>
 							<div class="description" n:ifset="$endpoint[parameters]">
 								<h4>Parameters</h4>
-								{include @parameters.latte parameters => $endpoint[parameters]}
+								{include @parameters.latte parameters => $endpoint[parameters][properties]}
 							</div>
 							<ul class="nav nav-tabs" role="tablist">
 								<li role="presentation" n:ifset="$endpoint[request]" n:class="!$hasActive && ($hasActive = 1) ? active">
