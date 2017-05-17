@@ -13,7 +13,9 @@
 	{foreach $parameters as $parameter => $schema}
 		<tr>
 			<td>
-				<span class="d-inline"><span class="d-name">{$parameter}</span></span>
+				{var $types = explode('|', $schema[type])}
+				{var $suffix = in_array('array', $types, true) ? '[]' : ''}
+				<span class="d-inline"><span class="d-name">{$parameter}{$suffix}</span></span>
 			</td>
 			<td class="parameter-optional">
 				{if isset($schema[optional]) && $schema[optional]}
@@ -37,8 +39,17 @@
 					*}{foreach $types as $type}{*
 						*}{if in_array($type, [int, string, float, bool, datetime, date, 'null', any], true)}{*
 							*}<span class="d-type d-type-{$type}">{$type}</span>{*
+						*}{elseif $type === array}{*
+							*}{var $subTypes = explode('|', $schema[item][type])}{*
+							*}{foreach $subTypes as $subType}{*
+								*}{if in_array($subType, [int, string, float, bool, datetime, date, 'null', any], true)}{*
+									*}<span class="d-type d-type-{$subType}">{$subType}</span>{*
+								*}{else}{*
+									*}<i>doc-generator: unsupported parameter array sub-type</i>{*
+								*}{/if}{sep}<span class="d-type-sep">|</span>{/sep}{*
+							*}{/foreach}{*
 						*}{else}{*
-							*}else scalar type{*
+							*}<i>doc-generator: unsupported parameter type</i>{*
 						*}{/if}{sep}<span class="d-type-sep">|</span>{/sep}{*
 					*}{/foreach}{*
 				*}{/if}
