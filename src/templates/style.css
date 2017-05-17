@@ -202,6 +202,14 @@ footer a:hover {
 .endpoint-body .parameter-description p:last-child {
 	margin-bottom: 0;
 }
+.endpoint-body .parameter-optional {
+	padding: 0;
+	width: 1px;
+}
+.endpoint-body .parameter-optional > span {
+	padding: 5px;
+	display: inline-block;
+}
 .endpoint-body .btn-sample-toggler {
 	float: right;
 }

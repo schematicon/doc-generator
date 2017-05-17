@@ -4,7 +4,7 @@
 	<thead>
 	<tr>
 		<th>name</th>
-		<th>type</th>
+		<th colspan="2">type</th>
 		<th>example</th>
 		<th>description</th>
 	</tr>
@@ -14,6 +14,11 @@
 		<tr>
 			<td>
 				<span class="d-inline"><span class="d-name">{$parameter}</span></span>
+			</td>
+			<td class="parameter-optional">
+				{if isset($schema[optional]) && $schema[optional]}
+					<span><span class="d-optional">optional</span></span>
+				{/if}
 			</td>
 			<td>
 				<div class="d-inline">
@@ -37,11 +42,6 @@
 						*}{/if}{sep}<span class="d-type-sep">|</span>{/sep}{*
 					*}{/foreach}{*
 				*}{/if}
-				{ifset $schema[optional]}
-					{if $schema[optional]}
-						<span class="d-optional">optional</span>
-					{/if}
-				{/ifset}
 				</div>
 			</td>
 			<td>
