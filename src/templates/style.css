@@ -228,13 +228,13 @@ footer a:hover {
 	background: #006ba6;
 }
 .endpoint-header .type-put {
-	background: #f58a07;
+	background: #ddb204;
 }
 .endpoint-header .type-patch {
-	background: #f58a07;
+	background: #ddb204;
 }
 .endpoint-header .type-delete {
-	background: #a30000;
+	background: #c14545;
 }
 .endpoint-header .title {
 	font-size: 1.2em;
