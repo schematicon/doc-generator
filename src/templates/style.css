@@ -187,8 +187,6 @@ footer a:hover {
 }
 .endpoint-body .parameter-description {
 	color: #666;
-	max-width: 50%;
-	width: 100%;
 }
 .endpoint-body .parameter-description p:last-child {
 	margin-bottom: 0;
