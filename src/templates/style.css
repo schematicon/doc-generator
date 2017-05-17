@@ -210,7 +210,6 @@ footer a:hover {
 	font-weight: bold;
 	display: inline-block;
 	width: 90px;
-	border-radius: 2px 0 0 0;
 	background: #eee;
 }
 .endpoint-header {
@@ -277,4 +276,17 @@ pre > code {
 .table {
 	margin-bottom: 3em;
 	border-bottom: 2px solid #ddd;
+}
+
+[data-toggle="collapse"]:before {
+	position: absolute;
+	font-size: 21px;
+	margin: 0 0 0 -30px;
+	content: "\A0\25BC";
+	color: black;
+	opacity: 0.4;
+}
+
+.collapsed[data-toggle="collapse"]:before {
+	content: "\A0\25BA";
 }
