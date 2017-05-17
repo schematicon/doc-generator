@@ -107,6 +107,17 @@ footer a:hover {
 	padding: 0 0.3em;
 }
 
+.general-description {
+	background: white;
+	border: 1px solid #dedede;
+	border-radius: 3px;
+	padding: 0.8em 1.2em;
+	margin-bottom: 0.4em;
+}
+.general-description p:last-child {
+	margin-bottom: 0;
+}
+
 .section {
 	margin-bottom: 1.8em;
 }
@@ -247,9 +258,16 @@ footer a:hover {
 }
 
 code {
-	border: 1px solid #e8d7dc;
-	padding-top: 0;
-	padding-bottom: 0;
+	padding: 1px 4px;
+	color: #444;
+	background-color: #ffffff;
+	white-space: nowrap;
+	border-radius: 0;
+}
+
+code:hover {
+	background-color: #FFF5CC;
+	color: #333;
 }
 
 pre > code {

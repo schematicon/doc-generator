@@ -3,9 +3,8 @@
 
 	<h1><a href="./">{$api[title]}</a></h1>
 
-	<section n:ifset="$api[description]">
+	<section n:ifset="$api[description]" class="general-description">
 		{$api[description]|texy}
-		<br>
 	</section>
 
 	{ifset $api[prefix]}
@@ -37,7 +36,7 @@
 			<a href="#{$sectionAnchor}">#</a>
 		</h3>
 
-		<div n:if="!empty($section[description])">
+		<div n:if="!empty($section[description])" class="general-description">
 			{$section[description]|texy}
 		</div>
 
