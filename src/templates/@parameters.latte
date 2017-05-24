@@ -13,7 +13,7 @@
 	{foreach $parameters as $parameter => $schema}
 		<tr>
 			<td>
-				{var $types = explode('|', $schema[type])}
+				{var $types = isset($schema[type]) ? explode('|', $schema[type]) : []}
 				{var $suffix = in_array('array', $types, true) ? '[]' : ''}
 				<span class="d-inline"><span class="d-name">{$parameter}{$suffix}</span></span>
 			</td>
