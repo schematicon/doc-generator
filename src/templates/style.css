@@ -1,5 +1,5 @@
 body {
-	background: #eee;
+	background: #f2f2f2;
 }
 h1 {
 	margin-bottom: 0.8em;
@@ -214,10 +214,10 @@ footer a:hover {
 	float: right;
 }
 .endpoint .type {
-	padding: 0.4em 1em;
+	padding: 0.4em 0.2em;
 	font-weight: bold;
 	display: inline-block;
-	width: 90px;
+	width: 110px;
 	background: #eee;
 }
 .endpoint-header {
@@ -286,15 +286,20 @@ pre > code {
 	border-bottom: 2px solid #ddd;
 }
 
-[data-toggle="collapse"]:before {
-	position: absolute;
+[data-toggle="collapse"] .toggle:before {
+	display: inline-block;
 	font-size: 21px;
-	margin: 0 0 0 -30px;
+	line-height: 19px;
+	margin: 0 5px 0 0;
 	content: "\A0\25BC";
 	color: black;
-	opacity: 0.4;
+	opacity: 0.5;
 }
 
-.collapsed[data-toggle="collapse"]:before {
+[data-toggle="collapse"].endpoint-header .type.toggle:before {
+	float: left;
+}
+
+.collapsed[data-toggle="collapse"] .toggle:before {
 	content: "\A0\25BA";
 }

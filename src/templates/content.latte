@@ -10,7 +10,7 @@
 	{ifset $api[prefix]}
 	<div class="endpoint">
 		<div class="endpoint-header collapsed" data-toggle="collapse" data-target="#e-urlprefix" aria-expanded="false">
-			<span class="title">URL Prefix &amp; Parameters</span>
+			<span class="title toggle">URL Prefix &amp; Parameters</span>
 		</div>
 		<div class="endpoint-body collapse" id="e-urlprefix">
 			<div class="description">
@@ -52,7 +52,7 @@
 							<a href="#{$anchor}">#</a>
 						</div>
 						<div class="endpoint-header collapsed" data-toggle="collapse" data-target="#e-{$eid}" aria-expanded="false">
-							<span class="type type-{$method}">{$method|upper}</span>
+							<span class="type type-{$method} toggle">{$method|upper}</span>
 							<span class="url">{$url|urlvars}</span>
 							<span class="tags pull-right">
 							{foreach $endpoint[tags] ?? $generalEndpoint[tags] ?? [] as $tag}
