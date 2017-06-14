@@ -90,7 +90,7 @@ footer a:hover {
 .d-show-samples .d-sample ~ .d-types {
 	display: none;
 }
-.d-optional {
+.d-optional, .d-inlined {
 	font-style: italic;
 }
 .d-inline {
@@ -210,6 +210,7 @@ footer a:hover {
 .endpoint-body .parameter-optional > span {
 	padding: 5px;
 	display: inline-block;
+	white-space: nowrap;
 }
 .endpoint-body .btn-sample-toggler {
 	float: right;

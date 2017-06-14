@@ -18,7 +18,9 @@
 				<span class="d-inline"><span class="d-name">{$parameter}{$suffix}</span></span>
 			</td>
 			<td class="parameter-optional">
-				{if isset($schema[optional]) && $schema[optional]}
+				{if stripos($url, '{' . $parameter . '}') !== false}
+					<span><span class="d-inlined">inlined in path<span></span>
+				{elseif isset($schema[optional]) && $schema[optional]}
 					<span><span class="d-optional">optional</span></span>
 				{/if}
 			</td>
