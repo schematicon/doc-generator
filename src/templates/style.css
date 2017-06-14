@@ -155,14 +155,18 @@ footer a:hover {
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	margin-bottom: 0.2em;
-	margin-right: 1em;
+	width: 100%;
 }
 .endpoint:hover {
 	border-color: #aaa;
 }
+.endpoint:hover .endpoint-anchor, .endpoint:target .endpoint-anchor {
+	display: block;
+}
 .endpoint-anchor {
+	display: none;
 	position: absolute;
-	right: 1em;
+	right: 2em;
 }
 .endpoint-anchor a {
 	color: #555;
@@ -222,6 +226,7 @@ footer a:hover {
 }
 .endpoint-header {
 	cursor: pointer;
+	padding-right: 2.2em;
 }
 .endpoint:target .endpoint-header {
 	background: lightgoldenrodyellow;
@@ -247,11 +252,11 @@ footer a:hover {
 .endpoint-header .title {
 	font-size: 1.2em;
 	line-height: 1.9;
-	margin: 0 1em;
+	margin: 0 0 0 1em;
 }
 .endpoint-header .tags {
 	line-height: 1.9;
-	margin: 0 1em 0 0;
+	margin: 0 0 0 1.15em;
 }
 .endpoint-header .url {
 	padding: 0.4em 0.5em;
