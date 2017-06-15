@@ -127,6 +127,9 @@ details > summary:first-of-type {
 .general-description p:last-child {
 	margin-bottom: 0;
 }
+.general-description details:not(:last-child) {
+	margin-bottom: 0.6rem;
+}
 
 .section {
 	margin-bottom: 2.4rem;
@@ -212,6 +215,9 @@ details > summary:first-of-type {
 }
 .endpoint-body .parameter-description p:last-child {
 	margin-bottom: 0;
+}
+.endpoint-body .parameter-description details:not(:last-child) {
+	margin-bottom: 0.6rem;
 }
 .endpoint-body .parameter-optional {
 	padding: 0;
