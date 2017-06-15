@@ -294,12 +294,11 @@ pre > code {
 
 [data-toggle="collapse"] .toggle:before {
 	display: inline-block;
-	font-size: 21px;
+	font-size: 16px;
 	line-height: 19px;
 	margin: 0 5px 0 0;
 	content: "\A0\25BC";
 	color: black;
-	opacity: 0.5;
 }
 
 [data-toggle="collapse"].endpoint-header .type.toggle:before {
