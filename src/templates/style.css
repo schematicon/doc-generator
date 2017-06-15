@@ -16,6 +16,9 @@ footer a {
 footer a:hover {
 	color: #555;
 }
+details > summary:first-of-type {
+	display: list-item;
+}
 
 
 .d-row {
