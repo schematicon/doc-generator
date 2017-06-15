@@ -45,7 +45,7 @@
 				{ifset $generalEndpoint[$method]}
 					{var $endpoint = $generalEndpoint[$method]}
 					{var $hasActive = null}
-					{var $eid = md5($url . $method)}
+					{var $eid = 'id' . md5($url . $method)}
 					{var $anchor = 'endpoint-' . Nette\Utils\Strings::webalize($method . '-' . $url)}
 					<div class="endpoint" id="{$anchor}">
 						<div class="endpoint-anchor">
@@ -54,12 +54,12 @@
 						<div class="endpoint-header collapsed" data-toggle="collapse" data-target="#e-{$eid}" aria-expanded="false">
 							<span class="type type-{$method} toggle">{$method|upper}</span>
 							<span class="url">{$url|urlvars}</span>
-							<span class="tags pull-right">
+							<span class="tags float-right">
 							{foreach $endpoint[tags] ?? $generalEndpoint[tags] ?? [] as $tag}
 								<span class="{$tags[classes][$tag] ?? $tags[defaultClass] ?? ''}">{$tag}</span>
 							{/foreach}
 							</span>
-							<span class="title pull-right">{$endpoint[title]}</span>
+							<span class="title float-right">{$endpoint[title]}</span>
 						</div>
 						<div class="endpoint-body collapse" id="e-{$eid}">
 							<div class="description" n:if="!empty($endpoint[description])">
@@ -67,18 +67,19 @@
 							</div>
 
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active">
-									<a href="#{$eid}-request" aria-controls="home" role="tab" data-toggle="tab">Request</a>
+								<li class="nav-item">
+									<a href="#{$eid}-request" class="nav-link active" data-toggle="tab" role="tab">Request</a>
 								</li>
-								<li role="presentation" n:ifset="$endpoint[response_ok]">
-									<a href="#{$eid}-response_ok" aria-controls="home" role="tab" data-toggle="tab">Response SUCCESS</a>
+								<li class="nav-item" n:ifset="$endpoint[response_ok]">
+									<a href="#{$eid}-response_ok" class="nav-link" data-toggle="tab" role="tab">Response SUCCESS</a>
 								</li>
-								<li role="presentation" n:ifset="$endpoint[response_error]">
-									<a href="#{$eid}-response_error" aria-controls="home" role="tab" data-toggle="tab">Response ERROR</a>
+								<li class="nav-item" n:ifset="$endpoint[response_error]">
+									<a href="#{$eid}-response_error" class="nav-link" data-toggle="tab" role="tab">Response ERROR</a>
 								</li>
 							</ul>
+
 							<div class="tab-content">
-								<div role="tabpanel" class="active tab-pane" id="{$eid}-request">
+								<div role="tabpanel" class="tab-pane active" id="{$eid}-request">
 									<div n:if="!empty($endpoint[request][description])">
 										{$endpoint[request][description]|texy}
 									</div>
