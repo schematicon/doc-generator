@@ -1,20 +1,25 @@
 body {
-	background: #eee;
+	background: #f2f2f2;
+	font-size: 14px;
+	padding-top: 1rem;
 }
 h1 {
-	margin-bottom: 0.8em;
+	margin-bottom: 1.2rem;
 }
 h1 a {
 	color: black;
 }
 footer {
-	padding: 8em 0 2em;
+	padding: 8rem 0 2rem;
 }
 footer a {
 	color: #888;
 }
 footer a:hover {
 	color: #555;
+}
+details > summary:first-of-type {
+	display: list-item;
 }
 
 
@@ -29,7 +34,8 @@ footer a:hover {
 	display: block;
 }
 .d-type-map-inner, .d-type-array-inner {
-	padding-left: 1.8em;
+	padding-left: 1.8rem;
+	margin-left: 0.2rem;
 	display: block;
 	border-left: 1px dotted #ccc;
 }
@@ -62,10 +68,10 @@ footer a:hover {
 }
 .d-description {
 	color: #666;
-	margin-left: 1em;
+	margin-left: 1rem;
 	font-style: italic;
-	font-size: 0.95em;
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 0.8rem;
+	font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 	overflow: hidden;
 	height: 17px;
 	position: absolute;
@@ -76,10 +82,11 @@ footer a:hover {
 .d-row:hover > .d-description {
 	background: white;
 	height: auto;
-	margin-left: 0.8em;
-	margin-top: -0.1em;
-	padding: 0.1em 0.2em;
+	margin-left: 0.8rem;
+	margin-top: -0.1rem;
+	padding: 0.1rem 0.2rem;
 	outline: 1px dashed #bbb;
+	z-index: 2;
 }
 .d-sample {
 	display: none;
@@ -90,7 +97,7 @@ footer a:hover {
 .d-show-samples .d-sample ~ .d-types {
 	display: none;
 }
-.d-optional {
+.d-optional, .d-inlined {
 	font-style: italic;
 }
 .d-inline {
@@ -104,25 +111,28 @@ footer a:hover {
 	background: #ddd;
 	border-radius: 2px;
 	line-height: 1;
-	padding: 0 0.3em;
+	padding: 0 0.3rem;
+}
+.d-type-info {
+	font-size: 0.75rem;
 }
 
 .general-description {
 	background: white;
 	border: 1px solid #dedede;
 	border-radius: 3px;
-	padding: 0.8em 1.2em;
-	margin-bottom: 0.4em;
+	padding: 0.8rem 1.2rem;
+	margin-bottom: 0.4rem;
 }
 .general-description p:last-child {
 	margin-bottom: 0;
 }
 
 .section {
-	margin-bottom: 1.8em;
+	margin-bottom: 2.4rem;
 }
 .section > h3 {
-	margin-top: 0.2em;
+	margin-top: 0.2rem;
 }
 .section > h3 a {
 	display: none;
@@ -136,37 +146,41 @@ footer a:hover {
 }
 .section:target  {
 	background: lightgoldenrodyellow;
-	border-radius: 0.4em;
+	border-radius: 0.4rem;
 	padding: 5px;
-	margin-left: -0.4em;
-	margin-right: -0.4em;
+	margin-left: -0.4rem;
+	margin-right: -0.4rem;
 }
 
 .section-panel {
 	background: white;
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	margin-bottom: 3em;
-	padding: 0.8em 1.2em;
+	margin-bottom: 3rem;
+	padding: 0.8rem 1.2rem;
 }
 
 .endpoint {
 	background: white;
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	margin-bottom: 0.2em;
-	margin-right: 1em;
+	margin-bottom: 0.2rem;
+	width: 100%;
 }
 .endpoint:hover {
 	border-color: #aaa;
 }
+.endpoint:hover .endpoint-anchor, .endpoint:target .endpoint-anchor {
+	display: block;
+}
 .endpoint-anchor {
+	display: none;
 	position: absolute;
-	right: 1em;
+	right: 1.7rem;
 }
 .endpoint-anchor a {
 	color: #555;
-	font-size: 1.1em;
+	font-size: 1.1rem;
 	line-height: 31px;
 	height: 33px;
 	display: block;
@@ -179,25 +193,22 @@ footer a:hover {
 	width: 100% !important;
 }
 .endpoint-body .nav-tabs {
-	padding: 0 1em;
-	margin-top: 1em;
+	padding: 0 1rem;
+	margin-top: 1rem;
 }
 .endpoint-body .nav > li > a {
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
 .endpoint-body .tab-pane {
-	padding: 1em;
+	padding: 1rem;
 }
 .endpoint-body .tab-pane > h4:first-child {
 	margin-top: 0;
 }
 .endpoint-body > .description {
-	margin-bottom: 1em;
-	padding: 1em 1em 0 1em;
-}
-.endpoint-body .parameter-description {
-	color: #666;
+	margin-bottom: 1rem;
+	padding: 1rem 1rem 0 1rem;
 }
 .endpoint-body .parameter-description p:last-child {
 	margin-bottom: 0;
@@ -209,19 +220,21 @@ footer a:hover {
 .endpoint-body .parameter-optional > span {
 	padding: 5px;
 	display: inline-block;
+	white-space: nowrap;
 }
 .endpoint-body .btn-sample-toggler {
 	float: right;
 }
 .endpoint .type {
-	padding: 0.4em 1em;
+	padding: 0.3rem 0.2rem;
 	font-weight: bold;
 	display: inline-block;
-	width: 90px;
+	width: 110px;
 	background: #eee;
 }
 .endpoint-header {
 	cursor: pointer;
+	padding-right: 2.2rem;
 }
 .endpoint:target .endpoint-header {
 	background: lightgoldenrodyellow;
@@ -245,16 +258,16 @@ footer a:hover {
 	background: #c14545;
 }
 .endpoint-header .title {
-	font-size: 1.2em;
+	font-size: 1rem;
 	line-height: 1.9;
-	margin: 0 1em;
+	margin: 0 0 0 1rem;
 }
 .endpoint-header .tags {
 	line-height: 1.9;
-	margin: 0 1em 0 0;
+	margin: 0 0 0 1.15rem;
 }
 .endpoint-header .url {
-	padding: 0.4em 0.5em;
+	padding: 0.3rem 0.5rem;
 }
 
 .url {
@@ -282,19 +295,24 @@ pre > code {
 }
 
 .table {
-	margin-bottom: 3em;
+	margin-bottom: 3rem;
 	border-bottom: 2px solid #ddd;
 }
 
-[data-toggle="collapse"]:before {
-	position: absolute;
-	font-size: 21px;
-	margin: 0 0 0 -30px;
+[data-toggle="collapse"] .toggle:before {
+	display: inline-block;
+	line-height: 19px;
+	margin: 0 5px 0 0;
 	content: "\A0\25BC";
 	color: black;
-	opacity: 0.4;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
 }
 
-.collapsed[data-toggle="collapse"]:before {
+[data-toggle="collapse"].endpoint-header .type.toggle:before {
+	float: left;
+}
+
+.collapsed[data-toggle="collapse"] .toggle:before {
 	content: "\A0\25BA";
 }

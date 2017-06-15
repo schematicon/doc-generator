@@ -1,4 +1,5 @@
 {import @value.latte}
+{import @schemaScalar.latte}
 
 {define level}
 	{if isset($schema[reference])}
@@ -24,25 +25,7 @@
 		<span class="d-types">
 		{var $types = explode('|', $schema[type])}
 		{foreach $types as $type}{*
-			*}{if $type === 'int'}{*
-				*}<span class="d-type d-type-int">int</span>{*
-				*}{if isset($schema[minValue]) || isset($schema[maxValue])}
-					<span class="d-number-count">{$schema[minValue]??'-∞'}&hellip;{$schema[maxValue]??'∞'}</span>{*
-				*}{/if}{*
-			*}{elseif $type === 'float'}{*
-				*}<span class="d-type d-type-float">float</span>{*
-				*}{if isset($schema[minValue]) || isset($schema[maxValue])}
-					<span class="d-number-count">{$schema[minValue]??'-∞'}&hellip;{$schema[maxValue]??'∞'}</span>{*
-				*}{/if}{*
-			*}{elseif $type === 'string'}{*
-				*}<span class="d-type d-type-string">string</span>{*
-				*}{if isset($schema[regexp])}(<span class="d-regexp" attr="Regular Expression">{$schema[regexp]}</span>){/if}{*
-				*}{if isset($schema[minLength]) || isset($schema[maxLength])}
-					<span class="d-number-count">{$schema[minLength]??'0'}&hellip;{$schema[maxLength]??'∞'} chars</span>{*
-				*}{/if}{*
-			*}{elseif in_array($type, [bool, datetime, date, 'null', any], true)}{*
-				*}<span class="d-type d-type-{$type}">{$type}</span>{*
-			*}{elseif $type === 'array'}{*
+			*}{if $type === 'array'}{*
 				*}<span class="d-type-array">{*
 					*}[
 					<span class="d-type-arary-inner">
@@ -76,6 +59,8 @@
 					</span>
 					}{*
 				*}</span>{*
+			*}{else}{*
+				*}{include schemaScalar type => $type, schema => $schema}{*
 			*}{/if}{sep}<span class="d-type-sep">|</span>{/sep}{*
 		*}{/foreach}
 		</span>
@@ -86,6 +71,6 @@
 {/define}
 
 <div n:class="isset($inline) && $inline ? d-inline : d-block">
-	<button class="btn-sample-toggler btn btn-default btn-sm">types/samples</button>
+	<button class="btn-sample-toggler btn btn-secondary btn-sm">types/samples</button>
 	{include level schema => $schema}
 </div>

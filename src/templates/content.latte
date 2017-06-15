@@ -10,7 +10,7 @@
 	{ifset $api[prefix]}
 	<div class="endpoint">
 		<div class="endpoint-header collapsed" data-toggle="collapse" data-target="#e-urlprefix" aria-expanded="false">
-			<span class="title">URL Prefix &amp; Parameters</span>
+			<span class="title toggle">URL Prefix &amp; Parameters</span>
 		</div>
 		<div class="endpoint-body collapse" id="e-urlprefix">
 			<div class="description">
@@ -20,7 +20,7 @@
 			{if !empty($api[prefix][parameters])}
 			<br>
 			<h4>Parameters</h4>
-			{include @parameters.latte parameters => $api[prefix][parameters]}
+			{include @parameters.latte parameters => $api[prefix][parameters], url => $api[prefix][url]}
 			{/if}
 			</div>
 		</div>
@@ -45,52 +45,60 @@
 				{ifset $generalEndpoint[$method]}
 					{var $endpoint = $generalEndpoint[$method]}
 					{var $hasActive = null}
-					{var $eid = md5($url . $method)}
+					{var $eid = 'id' . md5($url . $method)}
 					{var $anchor = 'endpoint-' . Nette\Utils\Strings::webalize($method . '-' . $url)}
 					<div class="endpoint" id="{$anchor}">
 						<div class="endpoint-anchor">
 							<a href="#{$anchor}">#</a>
 						</div>
 						<div class="endpoint-header collapsed" data-toggle="collapse" data-target="#e-{$eid}" aria-expanded="false">
-							<span class="type type-{$method}">{$method|upper}</span>
+							<span class="type type-{$method} toggle">{$method|upper}</span>
 							<span class="url">{$url|urlvars}</span>
-							<span class="tags pull-right">
+							<span class="tags float-right">
 							{foreach $endpoint[tags] ?? $generalEndpoint[tags] ?? [] as $tag}
 								<span class="{$tags[classes][$tag] ?? $tags[defaultClass] ?? ''}">{$tag}</span>
 							{/foreach}
 							</span>
-							<span class="title pull-right">{$endpoint[title]}</span>
+							<span class="title float-right">{$endpoint[title]}</span>
 						</div>
 						<div class="endpoint-body collapse" id="e-{$eid}">
 							<div class="description" n:if="!empty($endpoint[description])">
 								{$endpoint[description]|texy}
 							</div>
-							<div class="description" n:ifset="$endpoint[parameters]">
-								<h4>Parameters</h4>
-								{include @parameters.latte parameters => $endpoint[parameters][properties]}
-							</div>
+
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" n:ifset="$endpoint[request]" n:class="!$hasActive && ($hasActive = 1) ? active">
-									<a href="#{$eid}-request" aria-controls="home" role="tab" data-toggle="tab">Request</a>
+								<li class="nav-item">
+									<a href="#{$eid}-request" class="nav-link active" data-toggle="tab" role="tab">Request</a>
 								</li>
-								<li role="presentation" n:ifset="$endpoint[response_ok]" n:class="!$hasActive && ($hasActive = 2) ? active">
-									<a href="#{$eid}-response_ok" aria-controls="home" role="tab" data-toggle="tab">Response SUCCESS</a>
+								<li class="nav-item" n:ifset="$endpoint[response_ok]">
+									<a href="#{$eid}-response_ok" class="nav-link" data-toggle="tab" role="tab">Response SUCCESS</a>
 								</li>
-								<li role="presentation" n:ifset="$endpoint[response_error]" n:class="!$hasActive && ($hasActive = 3) ? active">
-									<a href="#{$eid}-response_error" aria-controls="home" role="tab" data-toggle="tab">Response ERROR</a>
+								<li class="nav-item" n:ifset="$endpoint[response_error]">
+									<a href="#{$eid}-response_error" class="nav-link" data-toggle="tab" role="tab">Response ERROR</a>
 								</li>
 							</ul>
+
 							<div class="tab-content">
-								<div role="tabpanel" n:class="$hasActive === 1 ? active, tab-pane" id="{$eid}-request" n:ifset="$endpoint[request]">
+								<div role="tabpanel" class="tab-pane active" id="{$eid}-request">
 									<div n:if="!empty($endpoint[request][description])">
 										{$endpoint[request][description]|texy}
+									</div>
+									<div class="description" n:ifset="$endpoint[parameters]">
+										<h4>Parameters</h4>
+										{include @parameters.latte parameters => $endpoint[parameters][properties], url => $url}
 									</div>
 									{if !empty($endpoint[request][schema])}
 										<h4>Body</h4>
 										{include @schema.latte schema => $endpoint[request][schema]}
+									{elseif $method !== 'get'}
+										<h4>Body</h4>
+										No body.
+									{/if}
+									{if empty($endpoint[parameters]) && empty($endpoint[request][schema]) && $method === 'get'}
+										No request data.
 									{/if}
 								</div>
-								<div role="tabpanel" n:class="$hasActive === 2 ? active, tab-pane" id="{$eid}-response_ok" n:ifset="$endpoint[response_ok]">
+								<div role="tabpanel" class="tab-pane" id="{$eid}-response_ok" n:ifset="$endpoint[response_ok]">
 									<div n:if="!empty($endpoint[response_ok][description])">
 										{$endpoint[response_ok][description]|texy}
 									</div>
@@ -99,7 +107,7 @@
 										{include @schema.latte schema => $endpoint[response_ok][schema]}
 									{/if}
 								</div>
-								<div role="tabpanel" n:class="$hasActive === 3 ? active, tab-pane" id="{$eid}-response_error" n:ifset="$endpoint[response_error]">
+								<div role="tabpanel" class="tab-pane" id="{$eid}-response_error" n:ifset="$endpoint[response_error]">
 									<div n:if="!empty($endpoint[response_error][description])">
 										{$endpoint[response_error][description]|texy}
 									</div>
@@ -120,7 +128,7 @@
 	<script>
 	$('.btn-sample-toggler').on('click', function () {
 		$(this).parent().toggleClass('d-show-samples');
-	})
+	});
 
 	$(window).on('load hashchange', function() {
 		$(window.location.hash).children('.collapse').collapse('show');
