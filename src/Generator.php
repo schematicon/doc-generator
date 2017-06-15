@@ -18,6 +18,7 @@ class Generator
 	public function generate(array $apiSpecification, array $configuration)
 	{
 		$texy = new Texy();
+		$texy->allowedTags = true;
 		$texy->headingModule->top = 4;
 
 		$latte = new Engine();
