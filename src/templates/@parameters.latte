@@ -1,4 +1,5 @@
 {import @value.latte}
+{import @schemaScalar.latte}
 
 <table class="table table-condensed ">
 	<thead>
@@ -40,12 +41,12 @@
 					*}{var $types = explode('|', $schema[type])}{*
 					*}{foreach $types as $type}{*
 						*}{if in_array($type, [int, string, float, bool, datetime, date, 'null', any], true)}{*
-							*}<span class="d-type d-type-{$type}">{$type}</span>{*
+							*}{include schemaScalar type => $type, schema => $schema}{*
 						*}{elseif $type === array}{*
 							*}{var $subTypes = explode('|', $schema[item][type])}{*
 							*}{foreach $subTypes as $subType}{*
 								*}{if in_array($subType, [int, string, float, bool, datetime, date, 'null', any], true)}{*
-									*}<span class="d-type d-type-{$subType}">{$subType}</span>{*
+									*}{include schemaScalar type => $subType, schema => $schema[item]}{*
 								*}{else}{*
 									*}<i>doc-generator: unsupported parameter array sub-type</i>{*
 								*}{/if}{sep}<span class="d-type-sep">|</span>{/sep}{*
