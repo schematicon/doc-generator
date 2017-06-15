@@ -127,7 +127,7 @@
 	<script>
 	$('.btn-sample-toggler').on('click', function () {
 		$(this).parent().toggleClass('d-show-samples');
-	})
+	});
 
 	$(window).on('load hashchange', function() {
 		$(window.location.hash).children('.collapse').collapse('show');
