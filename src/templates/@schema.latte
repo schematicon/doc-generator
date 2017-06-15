@@ -40,7 +40,11 @@
 				*}{if isset($schema[minLength]) || isset($schema[maxLength])}
 					<span class="d-number-count">{$schema[minLength]??'0'}&hellip;{$schema[maxLength]??'∞'} chars</span>{*
 				*}{/if}{*
-			*}{elseif in_array($type, [bool, datetime, date, 'null', any], true)}{*
+			*}{elseif $type === 'date'}{*
+				*}<span class="d-type d-type-date">date</span> <span class="d-type-info">(YYYY-MM-DD)</span>{*
+			*}{elseif $type === 'datetime'}{*
+				*}<span class="d-type d-type-datetime">datetime</span> <span class="d-type-info">(<a href="https://tools.ietf.org/html/rfc3339#section-5.6">YYYY-mm-ddTHH:ii:ssZ</a>)</span>{*
+			*}{elseif in_array($type, [bool, 'null', any], true)}{*
 				*}<span class="d-type d-type-{$type}">{$type}</span>{*
 			*}{elseif $type === 'array'}{*
 				*}<span class="d-type-array">{*

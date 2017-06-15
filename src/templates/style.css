@@ -110,6 +110,9 @@ details > summary:first-of-type {
 	line-height: 1;
 	padding: 0 0.3em;
 }
+.d-type-info {
+	font-size: 0.8em;
+}
 
 .general-description {
 	background: white;
