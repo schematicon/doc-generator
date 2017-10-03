@@ -131,7 +131,10 @@
 	});
 
 	$(window).on('load hashchange', function() {
-		$(window.location.hash).children('.collapse').collapse('show');
+		var target = $(window.location.hash);
+		target.parents('details').attr('open', true);
+		target.children('.collapse').collapse('show');
+		window.location.href = window.location.hash;
 	});
 	</script>
 
