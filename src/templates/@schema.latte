@@ -15,9 +15,14 @@
 			<span class="d-operator-inner">&ndash; {include level schema => $subSchema}</span>
 		{/foreach}
 	{elseif isset($schema[enum])}
+		{if isset($schema[sample]) || array_key_exists(sample, $schema)}
+			<span class="d-sample">{include value value => $schema[sample]}</span>
+		{/if}
+		<span class="d-types">
 		<span class="d-enum"><span class="d-enum-keyword">{if count($schema[enum]) === 1}const{else}enum{/if}</span>[{foreach $schema[enum] as $enumValue}{*
 			*}{include value value => $enumValue}{sep}, {/sep}{*
 		*}{/foreach}]</span>
+		</span>
 	{else}
 		{if isset($schema[sample]) || array_key_exists(sample, $schema)}
 			<span class="d-sample">{include value value => $schema[sample]}</span>
