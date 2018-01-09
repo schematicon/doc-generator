@@ -49,7 +49,7 @@
 					{foreach $schema[properties] as $keyName => $key}
 						<span class="d-row">
 							<span class="d-name">{*
-							*}{if $key[optional]}<abbr title="optional property">?</abbr>{/if}{*
+							*}{if isset($key[optional]) && $key[optional]}<abbr title="optional property">?</abbr>{/if}{*
 							*}{$keyName}{*
 							*}</span>:
 							{include level schema => $key}
