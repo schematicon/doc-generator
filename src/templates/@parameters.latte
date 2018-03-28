@@ -40,7 +40,7 @@
 				*}{else}{*
 					*}{var $types = explode('|', $schema[type])}{*
 					*}{foreach $types as $type}{*
-						*}{if in_array($type, [int, string, float, bool, datetime, date, 'null', any], true)}{*
+						*}{if in_array($type, [int, string, email, float, bool, datetime, date, 'null', any], true)}{*
 							*}{include schemaScalar type => $type, schema => $schema}{*
 						*}{elseif $type === array}{*
 							*}{var $subTypes = explode('|', $schema[item][type])}{*

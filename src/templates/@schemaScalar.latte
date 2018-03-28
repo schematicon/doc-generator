@@ -15,6 +15,8 @@
 		*}{if isset($schema[minLength]) || isset($schema[maxLength])}
 			<span class="d-number-count">{$schema[minLength]??'0'}&hellip;{$schema[maxLength]??'∞'} chars</span>{*
 		*}{/if}{*
+	*}{elseif $type === 'email'}{*
+		*}<span class="d-type d-type-email">email</span>{*
 	*}{elseif $type === 'date'}{*
 		*}<span class="d-type d-type-date">date</span> <span class="d-type-info">(YYYY-MM-DD)</span>{*
 	*}{elseif $type === 'datetime'}{*
