@@ -18,7 +18,7 @@
 		"nette/utils": "~2.4",
 		"schematicon/api-validator": "@dev",
 		"schematicon/validator": "@dev",
-		"symfony/console": "~3.1",
+		"symfony/console": "~3.1 || ~4.0",
 		"texy/texy": "~2.9",
 		"tracy/tracy": "~2.4"
 	},
