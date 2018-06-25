@@ -54,7 +54,7 @@ details > summary:first-of-type {
 .d-type-bool {
 	color: darkcyan;
 }
-.d-type-datetime, .d-type-date {
+.d-type-datetime, .d-type-date .d-type-localdatetime {
 	color: indigo;
 }
 .d-type-null {

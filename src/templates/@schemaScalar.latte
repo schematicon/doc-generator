@@ -21,6 +21,8 @@
 		*}<span class="d-type d-type-date">date</span> <span class="d-type-info">(YYYY-MM-DD)</span>{*
 	*}{elseif $type === 'datetime'}{*
 		*}<span class="d-type d-type-datetime">datetime</span> <span class="d-type-info">(<a href="https://tools.ietf.org/html/rfc3339#section-5.6">YYYY-mm-ddTHH:ii:ssZ</a>)</span>{*
+	*}{elseif $type === 'localdatetime'}{*
+		*}<span class="d-type d-type-localdatetime">localdatetime</span> <span class="d-type-info">(YYYY-mm-ddTHH:ii:ss)</span>{*
 	*}{elseif in_array($type, [bool, 'null', any], true)}{*
 		*}<span class="d-type d-type-{$type}">{$type}</span>{*
 	*}{/if}{*
