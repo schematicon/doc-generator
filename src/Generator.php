@@ -30,6 +30,11 @@ class Generator
 			return new Html($texy->process($content));
 		});
 
+		// sort sections alphabetically
+		usort($apiSpecification['sections'], function ($a, $b) {
+			return $a['title'] <=> $b['title'];
+		});
+
 		return $latte->renderToString(__DIR__ . '/templates/content.latte', [
 			'api' => $apiSpecification,
 			'loadReference' => function ($name) use ($apiSpecification) {
