@@ -39,7 +39,7 @@ details > summary:first-of-type {
 	display: block;
 	border-left: 1px dotted #ccc;
 }
-.d-type-string, .d-type-email {
+.d-type-string, .d-type-email, .d-type-url {
 	color: green;
 }
 .d-regexp {
