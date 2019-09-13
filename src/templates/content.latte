@@ -20,7 +20,7 @@
 			{if !empty($api[prefix][headers])}
 			<br>
 			<h4>Headers</h4>
-			{include @parameters.latte parameters => $api[prefix][headers]}
+			{include @parameters.latte parameters => $api[prefix][headers], url => $api[prefix][url]}
 			{/if}
 
 			{if !empty($api[prefix][parameters])}
@@ -33,6 +33,20 @@
 	</div>
 	<br>
 	{/ifset}
+
+	<div class="endpoint">
+		<div class="endpoint-header collapsed" data-toggle="collapse" data-target="#e-collections" aria-expanded="false">
+			<span class="title toggle">Exported Collections</span>
+		</div>
+		<div class="endpoint-body collapse" id="e-collections">
+			<div class="description">
+			<h4>Postman</h4>
+			<p>
+				<a href="postman_collection.json" target="_blank" download>collection.json</a>
+			</p>
+			</div>
+		</div>
+	</div>
 
 	{foreach $api[sections] as $section}
 	{var $sectionAnchor = 'section-' . Nette\Utils\Strings::webalize($section[title])}

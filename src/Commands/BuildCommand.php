@@ -12,6 +12,7 @@ use Nette\Neon\Entity;
 use Nette\Neon\Neon;
 use Schematicon\ApiValidator\Loader;
 use Schematicon\ApiValidator\Normalizer;
+use Schematicon\CollectionGenerator\PostmanGenerator;
 use Schematicon\DocGenerator\Generator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -41,6 +42,7 @@ class BuildCommand extends Command
 		$loader = new Loader();
 		$normalizer = new Normalizer();
 		$generator = new Generator();
+		$postmanGenerator = new PostmanGenerator();
 
 		$schema = $loader->run($schemaIndex);
 		$normalizedSchema = $normalizer->normalize($schema);
@@ -57,8 +59,10 @@ class BuildCommand extends Command
 			$config = [];
 		}
 
+		$collectionsJson = $postmanGenerator->generate($normalizedSchema);
 		$indexHtml = $generator->generate($normalizedSchema, $config);
 
+		file_put_contents($outDir . '/postman_collection.json', $collectionsJson);
 		file_put_contents($outDir . '/index.html', $indexHtml);
 		copy(__DIR__ . '/../templates/style.css', $outDir . '/style.css');
 	}
