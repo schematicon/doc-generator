@@ -17,7 +17,7 @@
 		"nette/neon": "~2.4",
 		"nette/utils": "~2.4",
 		"schematicon/api-validator": "@dev",
-		"schematicon/collection-generator": "^1.0",
+		"schematicon/collection-generator": "@dev",
 		"schematicon/validator": "@dev",
 		"symfony/console": "~3.1 || ~4.0",
 		"texy/texy": "~2.9",
