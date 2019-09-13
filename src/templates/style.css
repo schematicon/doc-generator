@@ -206,7 +206,7 @@ details > summary:first-of-type {
 .endpoint-body .tab-pane {
 	padding: 1rem;
 }
-.endpoint-body .tab-pane > h4:first-child {
+.endpoint-body h4:first-child {
 	margin-top: 0;
 }
 .endpoint-body > .description {
